@@ -1,0 +1,13 @@
+var express = require('express');
+var router = express.Router();
+
+/* GET users listing. */
+router.get('/userlist', function(req, res, next) {
+    res.send('Display reg. users info');
+});
+
+router.get('/create-question', function(req, res, next) {
+    res.send('Levels respond with a resource');
+});
+
+module.exports = router;

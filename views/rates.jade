@@ -1,0 +1,14 @@
+table
+    thead
+        tr
+            th
+                | Username
+            th
+                |   Rate
+    tbody
+        each val in users
+            tr
+                td
+                    |   #{val.username}
+                td
+                    |   #{val.rate}
