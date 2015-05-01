@@ -1,0 +1,88 @@
+doctype html
+html(lang="en")
+    head
+        title= "Smart Words"
+        link(rel="stylesheet", href="../stylesheets/style.css")
+        link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Rancho" type="text/css")
+        meta(charset="UTF-8")
+        meta(name="description" content="Smart Words is online game which allows you to enhance your knowledge and outlook by searching famous quotations, sayings and puzzles")
+        meta(name="keywords" content="game, quotations, sayings, puzzles, knowledge, brain activity")
+        script(type='text/javascript', src='../javascripts/jquery-latest.min.js')
+        script(type='text/javascript', src='../javascripts/scripts.js')
+        script(type='text/javascript', src='../javascripts/game.js')
+    body
+        div.wrapper
+            // |   #{JSON.stringify(game)}
+            // |   #{JSON.stringify(questions)}
+            header
+                div.row
+                    div.header-logo
+                        a(href="#" class="smart-words")
+                            img(src="../images/smart-words-logo.png" class="smart-word-logo")
+            div.content
+                div.options.row
+                    div.hint
+                        div#back-link.circle
+                            a(href="#" id="goback" class="get-hint" title="Go Back")
+                    div.hint
+                        audio(id="player" src="../heiveinu-shalom-aleichem.mp3")
+                        a(id="music" class="get-hint" title="Play Music")
+                            div#play-music.circle
+                    div.timer
+                        div#countdown.countdown.
+                            0.30
+                    div.hint
+                        a(href="#" class="get-hint" title="Remove Hint")
+                            div#get-help.circle
+                                div.icon-text.
+                        div.red-circle
+                            div.notification
+                                |    #{game.hintNum}
+                    div.hint
+                        a(href="#" class="get-hint" title="Skip Question")
+                            div#skip.circle
+                                div.icon-text
+                        div.red-circle
+                            div.notification
+                                |   #{game.skipNum}
+                div.questions.row
+                    h2.intro Finish the saying
+                    p
+                        |   #{questions[0].text}
+                    div.author.
+                        Author
+                div.answers.row
+                    div.choose-answers
+                        a(href="#" class= questions[0].rightAnswer == questions[0].answers[0] ? 'right answer' : 'wrong answer')
+                            |   #{questions[0].answers[0]}
+                        a(href="#" class= questions[0].rightAnswer == questions[0].answers[1] ? 'right answer' : 'wrong answer')
+                            |   #{questions[0].answers[1]}
+                        a(href="#" class= questions[0].rightAnswer == questions[0].answers[2] ? 'right answer' : 'wrong answer')
+                            |   #{questions[0].answers[2]}
+                        a(href="#" class= questions[0].rightAnswer == questions[0].answers[3] ? 'right answer' : 'wrong answer')
+                            |   #{questions[0].answers[3]}
+                div.progress.row
+                    div.bar
+                        progress(id="progress-bar", min="1", max="100", value="0")
+                        span.zero
+                        span.first.border-change
+                        span.second
+                        span.third
+                        span.fourth
+                        span.fifth
+                        p.percent.
+                            0% Complete
+            div.push
+        footer
+            div.copyright
+                p © 2015 WebandWeb.
+        div#time-box.time-popup
+            fieldset.textbox
+                h2.
+                    Time is over :(
+                p.
+                    Do you want to start a new game?
+                a.submit.decision.
+                    Yes
+                a.submit.decision.
+                    No
