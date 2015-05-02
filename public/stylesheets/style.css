@@ -177,6 +177,7 @@ body a {
     display: inline-block;
     width: 200px;
     margin: 8px 20px;
+    cursor: pointer;
 }
 /* line 195, ../sass/screen.scss */
 .wrapper .content .answers .choose-answers a.answer:hover {

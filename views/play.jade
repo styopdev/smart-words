@@ -30,16 +30,16 @@ html(lang="en")
                             div#play-music.circle
                     div.timer
                         div#countdown.countdown.
-                            0.30
+                            5.30
                     div.hint
-                        a(href="#" class="get-hint" title="Remove Hint")
+                        a(id="remove-wrong-answer" class="get-hint" title="Remove Hint")
                             div#get-help.circle
                                 div.icon-text.
                         div.red-circle
                             div.notification
                                 |    #{game.hintNum}
                     div.hint
-                        a(href="#" class="get-hint" title="Skip Question")
+                        a(id="skip-question" class="get-hint" title="Skip Question")
                             div#skip.circle
                                 div.icon-text
                         div.red-circle
@@ -53,13 +53,13 @@ html(lang="en")
                         Author
                 div.answers.row
                     div.choose-answers
-                        a(href="#" class= questions[0].rightAnswer == questions[0].answers[0] ? 'right answer' : 'wrong answer')
+                        a(id="answer1" class= questions[0].rightAnswer == questions[0].answers[0] ? 'right answer' : 'wrong answer')
                             |   #{questions[0].answers[0]}
-                        a(href="#" class= questions[0].rightAnswer == questions[0].answers[1] ? 'right answer' : 'wrong answer')
+                        a(id="answer2" class= questions[0].rightAnswer == questions[0].answers[1] ? 'right answer' : 'wrong answer')
                             |   #{questions[0].answers[1]}
-                        a(href="#" class= questions[0].rightAnswer == questions[0].answers[2] ? 'right answer' : 'wrong answer')
+                        a(id="answer3" class= questions[0].rightAnswer == questions[0].answers[2] ? 'right answer' : 'wrong answer')
                             |   #{questions[0].answers[2]}
-                        a(href="#" class= questions[0].rightAnswer == questions[0].answers[3] ? 'right answer' : 'wrong answer')
+                        a(id="answer4" class= questions[0].rightAnswer == questions[0].answers[3] ? 'right answer' : 'wrong answer')
                             |   #{questions[0].answers[3]}
                 div.progress.row
                     div.bar
