@@ -5,7 +5,7 @@ var QuestionSchema = new Schema({
     text: String,
     answers: [String],
     rightAnswer: String,
-    level: Number,
+    difficulty: Number,
     category : {type: String, enum: ['puzzles', 'sayings', 'quotations']}
 });
 module.exports = mongoose.model('Questions', QuestionSchema);

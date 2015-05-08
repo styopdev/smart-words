@@ -1,0 +1,239 @@
+doctype html
+html(lang='en')
+    head
+        title Smart Words
+        link(rel="stylesheet", href="../stylesheets/style.css")
+        link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Rancho', type='text/css')
+        meta(charset='UTF-8')
+        meta(name='description', content='Smart Words is online game which allows you to enhance your knowledge and outlook by searching famous quotations, sayings and puzzles')
+        meta(name='keywords', content='game, quotations, sayings, puzzles, knowledge, brain activity')
+        script(type='text/javascript', src='../javascripts/jquery-latest.min.js')
+    body
+        .wrapper
+            header
+                .row
+                    .header-logo
+                        a.smart-words(href='#')
+                            img.smart-word-logo(src='../images/smart-words-logo.png')
+            .content
+                .levels.row
+                    #view-more.view-more
+                        a(href='/game/tutorials') Learn to play
+                        a(href='/game/play?game_id='+game.id) Play
+                        //+'&category='+game.category+'&level='+game.curLevel+'') Play
+                        a(href='/users/rates') Check your rate
+                    // 10
+                    #level-10.level
+                        a(href='#')
+                        if game.curLevel > 10
+                            .level-number.green 10
+                        else if game.curLevel == 10
+                            .level-number.currentCircle 10
+                        else
+                            .level-number 10
+                        .level-stars
+                            if game.curLevel <= 10
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                            else
+                                each val in [0, 1, 2, 3, 4]
+                                    if val < game.levels[9]
+                                        img(src='../images/yellow-star.png', alt='yellow star')
+                                    else
+                                        img(src='../images/white-star.png', alt='white star')
+                    #level-9.level
+                        a(href='#')
+                        if game.curLevel > 9
+                            .level-number.green 9
+                        else if game.curLevel == 9
+                            .level-number.currentCircle 9
+                        else
+                            .level-number 9
+                        .level-stars
+                            if game.curLevel <= 9
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                            else
+                                each val in [0, 1, 2, 3, 4]
+                                    if val < game.levels[8]
+                                        img(src='../images/yellow-star.png', alt='yellow star')
+                                    else
+                                        img(src='../images/white-star.png', alt='white star')
+                    #level-8.level
+                        a(href='#')
+                        if game.curLevel > 8
+                            .level-number.green 8
+                        else if game.curLevel == 8
+                            .level-number.currentCircle 8
+                        else
+                            .level-number 8
+                        .level-stars
+                            if game.curLevel <= 8
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                            else
+                                each val in [0, 1, 2, 3, 4]
+                                    if val < game.levels[7]
+                                        img(src='../images/yellow-star.png', alt='yellow star')
+                                    else
+                                        img(src='../images/white-star.png', alt='white star')
+                    #level-7.level
+                        a(href='#')
+                        if game.curLevel > 7
+                            .level-number.green 7
+                        else if game.curLevel == 7
+                            .level-number.currentCircle 7
+                        else
+                            .level-number 7
+                        .level-stars
+                            if game.curLevel <= 7
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                            else
+                                each val in [0, 1, 2, 3, 4]
+                                    if val < game.levels[6]
+                                        img(src='../images/yellow-star.png', alt='yellow star')
+                                    else
+                                        img(src='../images/white-star.png', alt='white star')
+                    #level-6.level
+                        a(href='#')
+                        if game.curLevel > 6
+                            .level-number.green 6
+                        else if game.curLevel == 6
+                            .level-number.currentCircle 6
+                        else
+                            .level-number 6
+                        .level-stars
+                            if game.curLevel <= 6
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                            else
+                                each val in [0, 1, 2, 3, 4]
+                                    if val < game.levels[5]
+                                        img(src='../images/yellow-star.png', alt='yellow star')
+                                    else
+                                        img(src='../images/white-star.png', alt='white star')
+                    #level-5.level
+                        a(href='#')
+                        if game.curLevel > 5
+                            .level-number.green 5
+                        else if game.curLevel == 5
+                            .level-number.currentCircle 5
+                        else
+                            .level-number 5
+                        .level-stars
+                            if game.curLevel <= 5
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                            else
+                                each val in [0, 1, 2, 3, 4]
+                                    if val < game.levels[4]
+                                        img(src='../images/yellow-star.png', alt='yellow star')
+                                    else
+                                        img(src='../images/white-star.png', alt='white star')
+                    #level-4.level
+                        a(href='#')
+                        if game.curLevel > 4
+                            .level-number.green 4
+                        else if game.curLevel == 4
+                            .level-number.currentCircle 4
+                        else
+                            .level-number 4
+                        .level-stars
+                            if game.curLevel <= 4
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                            else
+                                each val in [0, 1, 2, 3, 4]
+                                    if val < game.levels[3]
+                                        img(src='../images/yellow-star.png', alt='yellow star')
+                                    else
+                                        img(src='../images/white-star.png', alt='white star')
+                    #level-3.level
+                        a(href='#')
+                        if game.curLevel > 3
+                            .level-number.green 3
+                        else if game.curLevel == 3
+                            .level-number.currentCircle 3
+                        else
+                            .level-number 3
+                        .level-stars
+                            if game.curLevel <= 3
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                            else
+                                each val in [0, 1, 2, 3, 4]
+                                    if val < game.levels[2]
+                                        img(src='../images/yellow-star.png', alt='yellow star')
+                                    else
+                                        img(src='../images/white-star.png', alt='white star')
+                    #level-2.level
+                        a(href='#')
+                        if game.curLevel > 2
+                            .level-number.green 2
+                        else if game.curLevel == 2
+                            .level-number.currentCircle 2
+                        else
+                            .level-number 2
+                        .level-stars
+                            if game.curLevel <= 2
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                            else
+                                each val in [0, 1, 2, 3, 4]
+                                    if val < game.levels[1]
+                                        img(src='../images/yellow-star.png', alt='yellow star')
+                                    else
+                                        img(src='../images/white-star.png', alt='white star')
+                    #level-1.level
+                        a(href='#')
+                        if game.curLevel >= 1
+                            .level-number.green 1
+                        else if game.curLevel == 1
+                            .level-number.currentCircle 1
+                        else
+                            .level-number 1
+                        .level-stars
+                            if game.curLevel == 1
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                                img(src='../images/white-star.png', alt='yellow star')
+                            else
+                                each val in [0, 1, 2, 3, 4]
+                                    if val < game.levels[0]
+                                        img(src='../images/yellow-star.png', alt='yellow star')
+                                    else
+                                        img(src='../images/white-star.png', alt='white star')
+            .push
+        footer
+            .copyright
+                p © 2015 WebandWeb.

@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+    head
+        title Smart Words
+        link(rel="stylesheet", href="../stylesheets/style.css")
+        link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Rancho', type='text/css')
+        meta(charset='UTF-8')
+        meta(name='description', content='Smart Words is online game which allows you to enhance your knowledge and outlook by searching famous quotations, sayings and puzzles')
+        meta(name='keywords', content='game, quotations, sayings, puzzles, knowledge, brain activity')
+        script(type='text/javascript', src='../javascripts/jquery-latest.min.js')
+    body
+        .wrapper
+            header
+                .row
+                    .header-logo
+                        a.smart-words(href='#')
+                            img.smart-word-logo(src='../images/smart-words-logo.png')
+            .content
+                .categories.row
+                    .choose-categories
+                        a.category(href='levels?category=puzzles')
+                            br
+                            | Puzzles
+                        a.category(href='levels?category=sayings')
+                            br
+                            | Proverbs & Sayings
+                        a.category(href='levels?category=quotations')
+                            br
+                            | Quotations
+            .push
+        footer
+            .copyright
+                p © 2015 WebandWeb.

@@ -78,11 +78,13 @@ html(lang="en")
                 p © 2015 WebandWeb.
         div#time-box.time-popup
             fieldset.textbox
-                h2.
+                h2#timeOver.
                     Time is over :(
+                h2#wrongAnswer.
+                    Wrong answer o_0
                 p.
                     Do you want to start a new game?
-                a.submit.decision.
+                a.submit.decision(onclick="location.reload();").
                     Yes
-                a.submit.decision.
+                a.submit.decision(href="/game/levels?category="+game.category).
                     No

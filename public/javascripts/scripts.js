@@ -16,16 +16,18 @@ $(document).ready(function(){
 
 
     // Progress bar
-    $('#skip-question').click(function(){
-        var currentProgress = $('#progress-bar').val();  // get current progress value
-        var progressStep = 20;
-        console.log($('#progress-bar').val());
-        $('#progress-bar').val(currentProgress + progressStep); // shift one step forward
-        /*
-        if($('.bar span').hasClass('border-change')){
-            $('#progress-bar').val(progressStep);
-        } */
-    });
+    $('#skip-question').click(function() {
+        var clicked = $(this);
+        $.ajax({
+            url  : "/game/decrementHint",
+            data : {"hintType" : "skip"},
+            success : function(){
+                clicked.next().find(".notification").text = clicked.next().find(".notification").text - 1;
+            }
+        })
+   });
+
+
 
     $('.bar span').click(function(){
         var progressStep = 20;

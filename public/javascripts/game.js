@@ -33,6 +33,7 @@ $(document).ready(function(){
                 });
                 // Add the mask to body
                 $('body').append('<div id="mask"></div>');
+                $("#timeOver").css("display", "block")
                 $('#mask').fadeIn(300);
 
                 clearInterval(interval);
@@ -42,9 +43,19 @@ $(document).ready(function(){
 
     // Schedule the update to happen once every second
     var interval = setInterval(doUpdate, 5000);
-
+    $('#skip-question').click(function() {
+        var clicked = $(this);
+        $.ajax({
+            url  : "/game/decrementHint",
+            data : {"hintType" : "skip"},
+            success : function(){
+                clicked.next().find(".notification").text = clicked.next().find(".notification").text - 1;
+            }
+        })
+    });
     // remove wrong answer
     $('#remove-wrong-answer').click(function(){
+
 
         var wrongAnswers = [];
         $(".choose-answers .wrong").each(function() {
@@ -55,25 +66,50 @@ $(document).ready(function(){
         // generate random number within the length of array's range
         var randomAnswer = Math.floor(Math.random() * wrongAnswers.length);
         console.log(wrongAnswers[randomAnswer]);
-       // wrongAnswers[randomAnswer].css({'background':'#3DCC01', 'border-color':'#FEFB64'});
 
-        $('#' + wrongAnswers[randomAnswer]).css({'background':'#A8A8A8', 'color':'#FFFFFF', 'border-color':'#000000', 'pointer-events': 'none'});
+        $('#' + wrongAnswers[randomAnswer]).css({
+            'background':'#A8A8A8',
+            'color':'#FFFFFF',
+            'border-color':'#9ACD32',
+            'pointer-events': 'none'
+        });
         $('#' + wrongAnswers[randomAnswer]).click (function () {
             return false;
         });
+        var clicked = $(this);
 
-     /*   $('#' + wrongAnswers[randomAnswer]).click(function(){
-
-            console.log(this);
+        $.ajax({
+            url  : "/game/decrementHint",
+            data : {"hintType" : "remove"},
+            success : function(){
+                clicked.next().find(".notification").text = clicked.next().find(".notification").text - 1;
+            }
         });
-
-        $('#answer3').click(function(){
-
-            console.log(this);
-        }); */
-       // $('.my-link').bind('click', false);
-        // for (var i = 0; i < wrongAnswers.length; i++)
-        //     console.log(wrongAnswers[i]);
     });
+    var progressStep = 0;
+    $(".answer").click(function(){
+        if ($(this).hasClass("right")) {
+            var currentProgress = $('#progress-bar').val();  // get current progress value
+            progressStep += 20;
+            console.log($('#progress-bar').val());
+            $('#progress-bar').val(currentProgress + 20); // shift one step forward
+            $('.percent').html(progressStep + "% Complete");
+        } else {
+            var loginBox = document.getElementById('time-box');
+            //Fade in the Popup
+            $(loginBox).fadeIn(300);
+            //Set the center alignment padding + border see css style
+            var popMargTop = ($(loginBox).height() + 24) / 2;
+            var popMargLeft = ($(loginBox).width() + 24) / 2;
+            $(loginBox).css({
+                'margin-top' : -popMargTop,
+                'margin-left' : -popMargLeft
+            });
+            // Add the mask to body
+            $('body').append('<div id="mask"></div>');
+            $("#wrongAnswer").css("display", "block")
+            $('#mask').fadeIn(300);
+        }
+    })
 
 });// complete click

@@ -1,14 +1,135 @@
-table
-    thead
-        tr
-            th
-                | Username
-            th
-                |   Rate
-    tbody
-        each val in users
-            tr
-                td
-                    |   #{val.username}
-                td
-                    |   #{val.rate}
+doctype html
+html(lang='en')
+    head
+        title Smart Words
+        link(rel="stylesheet", href="../stylesheets/style.css")
+        link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Rancho', type='text/css')
+        meta(charset='UTF-8')
+        meta(name='description', content='Smart Words is online game which allows you to enhance your knowledge and outlook by searching famous quotations, sayings and puzzles')
+        meta(name='keywords', content='game, quotations, sayings, puzzles, knowledge, brain activity')
+        script(type='text/javascript', src='../javascripts/jquery-latest.min.js')
+        style.
+            table, th, td {
+                padding: 5px 3px;
+                border: 1px solid #cccccc;
+                border-collapse: collapse;
+                width: 570px;
+                margin: 20px auto;
+                text-align: center;
+            }
+
+            table th {
+                height: 40px;
+            }
+
+            table td {
+                height: 60px;
+            }
+
+            .rate-table .user-number {
+                width: 60px;
+            }
+
+            .rate-table .user-image {
+                width: 90px;
+            }
+
+            .rate-table .user-name {
+                width: 210px;
+            }
+
+            .rate-table .user-scores {
+                width: 160px;
+            }
+
+            .rate-table #owner-row {
+                margin: 0 auto;
+                border: 2px solid yellow;
+                background: red;
+            }
+    body
+        .wrapper
+            header
+                .row
+                    .header-logo
+                        a.smart-words(href='#')
+                            img.smart-word-logo(src='../images/smart-words-logo.png')
+            .content
+                .rates.row
+                    .top-players
+                        table.rate-table
+                            tr
+                                th.user-number #
+                                th.user-image Image
+                                th.user-name Username
+                                th.user-scores Scores
+                            tr
+                                td.user-number 1
+                                td.user-image
+                                    img(src='../images/profile/1.jpg', alt='profile picture', width='50', height='50')
+                                td.user-name Name
+                                td.user-scores 5782
+                            tr
+                                td.user-number 2
+                                td.user-image
+                                    img(src='../images/profile/2.png', alt='profile picture', width='50', height='50')
+                                td.user-name Name
+                                td.user-scores 5653
+                            tr
+                                td.user-number 3
+                                td.user-image
+                                    img(src='../images/profile/3.png', alt='profile picture', width='50', height='50')
+                                td.user-name Name
+                                td.user-scores 5101
+                            tr
+                                td.user-number 4
+                                td.user-image
+                                    img(src='../images/profile/4.jpeg', alt='profile picture', width='50', height='50')
+                                td.user-name Name
+                                td.user-scores 4850
+                            tr
+                                td.user-number 5
+                                td.user-image
+                                    img(src='../images/profile/1.jpg', alt='profile picture', width='50', height='50')
+                                td.user-name Name
+                                td.user-scores 4576
+                            tr
+                                td.user-number 6
+                                td.user-image
+                                    img(src='../images/profile/2.png', alt='profile picture', width='50', height='50')
+                                td.user-name Name
+                                td.user-scores 4123
+                            tr
+                                td.user-number 7
+                                td.user-image
+                                    img(src='../images/profile/3.png', alt='profile picture', width='50', height='50')
+                                td.user-name Name
+                                td.user-scores 3823
+                            tr
+                                td.user-number 8
+                                td.user-image
+                                    img(src='../images/profile/4.jpeg', alt='profile picture', width='50', height='50')
+                                td.user-name Name
+                                td.user-scores 3753
+                            tr
+                                td.user-number 9
+                                td.user-image
+                                    img(src='../images/profile/2.png', alt='profile picture', width='50', height='50')
+                                td.user-name Name
+                                td.user-scores 3523
+                            tr
+                                td.user-number 10
+                                td.user-image
+                                    img(src='../images/profile/3.png', alt='profile picture', width='50', height='50')
+                                td.user-name Name
+                                td.user-scores 3214
+                            tr#owner-row
+                                td.user-number 24
+                                td.user-image
+                                    img(src='../images/profile/2.png', alt='profile picture', width='50', height='50')
+                                td.user-name Name
+                                td.user-scores 568
+            .push
+        footer
+            .copyright
+                p © 2015 WebandWeb.

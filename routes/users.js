@@ -12,7 +12,7 @@ router.get('/login', function(req, res, next) {
     user.save(function(err){
         console.log(err);
     });
-    res.send('Login respond with a resource');
+    res.render('login');
 });
 
 router.get('/rates', function(req, res, next) {
