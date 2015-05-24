@@ -1,0 +1,77 @@
+doctype html
+html
+    head(lang='en')
+        title Smart Words
+        link(rel="stylesheet", href="../stylesheets/style.css")
+        link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Rancho', type='text/css')
+        meta(charset='UTF-8')
+        meta(name='description', content='Smart Words is online game which allows you to enhance your knowledge and outlook by searching famous quotations, sayings and puzzles')
+        meta(name='keywords', content='game, quotations, sayings, puzzles, knowledge, brain activity')
+
+        script(type='text/javascript', src='../javascripts/jquery-latest.min.js')
+        script(type='text/javascript', src='../javascripts/scripts.js')
+        script(type='text/javascript', src='../javascripts/tutorials.js')
+    body
+        .wrapper
+            header
+                .row
+                    .header-logo
+                        a.smart-words(href='#')
+                            span(title='More')
+                                img.smart-word-logo(src='../images/smart-words-logo.png')
+            .content
+                .options.row
+                    .hint
+                        a#goback.get-hint(href='#', title='Go Back')
+                            span(title='More')
+                                #back-link-tuts.circle
+                                    .icon-text
+                    .hint
+                        audio#player(src='heiveinu-shalom-aleichem.mp3')
+                        a#music.get-hint(title='Play Music')
+                            span(title='More')
+                                #play-music-tuts.circle
+                    #timer.timer.tooltip-D1(title='Remaining time')
+                        #countdown.countdown1 0.05
+                    .hint
+                        a#remove-hint.get-hint(href='#', title='Remove Hint')
+                            span(title='More')
+                                #get-help-tuts.circle
+                                    .icon-text
+                        .red-circle
+                            .notification 2
+                    .hint
+                        a#skip-question.get-hint(href='#', title='Skip the Question')
+                            #skip.circle
+                                .icon-text
+                        .red-circle
+                            .notification 4
+                .questions.row
+                    h2.intro Finish the saying
+                    p#main-question.tooltip-F1(title='Question to you')
+                        | Life isn't about finding yourself.
+                        br
+                        |  Life is about
+                        span.missing-word  --------
+                        |  yourself.
+                    .author Author
+                #answers.answers.row(title='You should choose right answer among given options')
+                    .choose-answers
+                        a.answer(href='#') Motivating
+                        a.answer(href='#') Blaming
+                        a.answer(href='#') Creating
+                        a.answer(href='#') Making
+                #progress-row.progress.row(title='Progress bar')
+                    .bar
+                        progress#progress-bar(min='1', max='100', value='0')
+                        span.zero
+                        span.first.border-change
+                        span.second
+                        span.third
+                        span.fourth
+                        span.fifth
+                        p#completion-level.percent(title='Level of completion') 0% Complete
+            .push
+        footer
+            .copyright
+                p © 2015 WebandWeb.

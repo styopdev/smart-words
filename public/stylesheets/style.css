@@ -748,4 +748,9 @@ border-left: 6px solid #ff0000;
 left: 46%;
 bottom: 66px;
 }
-
+.disabled {
+background-color : #A8A8A8 !important;
+color:#FFFFFF !important;
+border-color:#9ACD32 !important;
+pointer-events: none !important;
+}

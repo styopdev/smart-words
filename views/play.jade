@@ -11,9 +11,7 @@ html(lang="en")
         script(type='text/javascript', src='../javascripts/scripts.js')
         script(type='text/javascript', src='../javascripts/game.js')
     body
-        div.wrapper
-            // |   #{JSON.stringify(game)}
-            // |   #{JSON.stringify(questions)}
+         div.wrapper
             header
                 div.row
                     div.header-logo
@@ -36,17 +34,17 @@ html(lang="en")
                             div#get-help.circle
                                 div.icon-text.
                         div.red-circle
-                            div.notification
+                            div.notification#remove-hint
                                 |    #{game.hintNum}
                     div.hint
                         a(id="skip-question" class="get-hint" title="Skip Question")
                             div#skip.circle
                                 div.icon-text
                         div.red-circle
-                            div.notification
+                            div.notification#skip-hint
                                 |   #{game.skipNum}
+                h2.intro Finish the saying
                 div.questions.row
-                    h2.intro Finish the saying
                     p
                         |   #{questions[0].text}
                     div.author.
@@ -88,3 +86,6 @@ html(lang="en")
                     Yes
                 a.submit.decision(href="/game/levels?category="+game.category).
                     No
+script(type="text/javascript").
+    var questions = !{JSON.stringify(questions)};
+    var game_id   = !{JSON.stringify(game.id)};

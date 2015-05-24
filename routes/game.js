@@ -6,6 +6,11 @@ router.get('/category', function(req, res, next) {
     res.render('category');
 });
 
+router.get('/tutorial', function(req, res, next) {
+    res.render('tutorial');
+});
+
+
 router.get('/levels', function(req, res, next) {
     var category = req.query.category;
     if (category) {
@@ -29,6 +34,11 @@ router.get('/play', function(req, res, next) {
     var gameModel = require("../models/games");
     var questionModel = require("../models/questions");
     var gameID   = req.query.game_id;
+    if (!gameID) {
+        var err = new Error();
+        err.statusCode = 400;
+        return next(err);
+    }
     //var category = req.query.category;
     //var level    = req.query.level;
 
@@ -50,12 +60,18 @@ router.get('/play', function(req, res, next) {
 });
 router.get('/decrementHint', function(req, res, next) {
     var gameModel = require("../models/games");
-    var hintType = req.query.hintType;
-    if (hintType == "remove") {
-       // gameModel.update({"_id" : });
-    } else if (hintType == "skip") {
+    var updateObject = req.query.hintType == "hintNum" ? {"$inc" : {"hintNum" : -1}} : {"$inc" : {"skipNum" : -1}};
+    var game_id  = req.query.game_id;
 
-    }
+    if (!updateObject || !game_id)
+        return;
+    gameModel.update({"_id" : game_id}, updateObject, function(err) {
+        if (err) {
+            return next(err);
+        } else {
+            return res.end();
+        }
+    });
 });
 
 
