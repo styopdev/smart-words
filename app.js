@@ -76,13 +76,22 @@ app.use(function(err, req, res, next) {
 
 app.listen(8081);
 
-mongoose.connect('mongodb://localhost/smart-words', function(err) {
+mongoose.connect('mongodb://webandweb:webandweb@ds035702.mongolab.com:35702/heroku_app37281039', function(err) {
     if (err) {
         throw err;
     } else {
         console.log("Connected!!!");
     }
 });
+
+
+/*mongoose.connect('mongodb://localhost/smart-words', function(err) {
+    if (err) {
+        throw err;
+    } else {
+        console.log("Connected!!!");
+    }
+});*/
 
 
 
