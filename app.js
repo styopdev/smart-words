@@ -76,7 +76,7 @@ app.use(function(err, req, res, next) {
 
 app.listen(8081);
 
-mongoose.connect('mongodb://webandweb:webandweb@ds035702.mongolab.com:35702/heroku_app37281039', function(err) {
+mongoose.connect('mongodb://webandweb:webandweb@ds045632.mongolab.com:45632/heroku_gl2x2zpj', function(err) {
     if (err) {
         throw err;
     } else {
