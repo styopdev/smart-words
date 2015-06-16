@@ -74,7 +74,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(8081);
+app.listen(80);
 
 mongoose.connect('mongodb://webandweb:webandweb@ds045632.mongolab.com:45632/heroku_gl2x2zpj', function(err) {
     if (err) {
