@@ -73,8 +73,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
-app.listen(80);
+var port = process.env.PORT || 8080;
+app.listen(port);
 
 mongoose.connect('mongodb://webandweb:webandweb@ds045632.mongolab.com:45632/heroku_gl2x2zpj', function(err) {
     if (err) {
