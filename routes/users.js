@@ -30,7 +30,7 @@ router.post('/create', function(req, res, next) {
     var UserModel = require("../models/users");
     if (req.body) {
         console.log(req.body)
-        if (req.body.username || req.body.email || req.body.id || req.body.socType) {
+        if (req.body.name && req.body.email && req.body.id && req.body.socType && req.body.gender && req.body.locale) {
             var userInfo = req.body;
             UserModel.findOne({"userId": userInfo.id}, function (err, exUser) {
                 if (err) return next(err);
@@ -48,12 +48,12 @@ router.post('/create', function(req, res, next) {
                     }
                 } else {
                     var user = new UserModel();
-                    user.username = userInfo.user;
+                    user.username = userInfo.name;
                     user.email    = userInfo.email;
                     user.userId   = userInfo.id;
                     user.socType  = userInfo.socType;
-                    exUser.locale = userInfo.locale;
-                    exUser.gender = userInfo.gender;
+                    user.locale   = userInfo.locale;
+                    user.gender   = userInfo.gender;
 
                     user.save(function (err) {
                         if (err) return next(err);

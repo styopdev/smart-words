@@ -72,7 +72,7 @@ function testAPI() {
             $.ajax({
                 type : "POST",
                 url  : "/users/create",
-                data : {'user' : response.name, 'email' : response.email, 'id' : response.id, "socType" : "fb", 'gender' : response.gender, 'locale' :response.locale},
+                data : {'name' : response.name, 'email' : response.email, 'id' : response.id, "socType" : "fb", 'gender' : response.gender, 'locale' :response.locale},
                 success : function(data) {
                     console.log(data);
                 }
