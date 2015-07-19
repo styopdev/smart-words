@@ -72,14 +72,14 @@ function testAPI() {
     FB.api('/me', function(response) {
         console.log(response.userID);
         console.log(response.authResponse);
-        $.ajax({
-            type : "POST",
-            url  : "/users/create",
-            data : {'user' : response.name, 'email' : response.email, 'userID' : response.authResponse.userID, "socType" : "fb"},
-            success : function(data) {
-                console.log(data);
-            }
-        });
+        //$.ajax({
+        //    type : "POST",
+        //    url  : "/users/create",
+        //    data : {'user' : response.name, 'email' : response.email, 'userID' : response.authResponse.userID, "socType" : "fb"},
+        //    success : function(data) {
+        //        console.log(data);
+        //    }
+        //});
     });
 }/**
  * Created by johannes on 7/19/2015.
