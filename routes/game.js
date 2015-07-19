@@ -12,15 +12,28 @@ router.get('/tutorial', function(req, res, next) {
 
 
 router.get('/levels', function(req, res, next) {
+    if (!req.session.user_id) {
+        return res.redirect("/users/login");
+    }
     var category = req.query.category;
     if (category) {
         var gameModel = require("../models/games");
-        gameModel.find({"category" : category}, function(err, game){
+        gameModel.findOne({"category" : category, "userId" : req.session.user_id}, function(err, game) {
             if (err) {
-                next(err);
+                return next(err);
+            } else if (game) {
+                return res.render('levels', {'game' : game});
             } else {
-                console.log(game)
-                res.render('levels', {'game' : game[0]});
+                var game = gameModel();
+                game.userId = req.session.user_id;
+                game.category = category;
+                game.curLevel = 1;
+                game.hintNum = 5;
+                game.skipNum = 5;
+                game.save(function(err){
+                    if (err) return next(err);
+                    return res.render('levels', {'game' : game});
+                });
             }
         });
     } else {
