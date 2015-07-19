@@ -7,7 +7,7 @@ var UserSchema = new Schema({
     userId   : String,
     email    : String,
     locale   : String,
-    gender   : Number,
+    gender   : String,
     socType  : {type: String, enum: ['fb', 'google', 'twitter']}
 });
 module.exports = mongoose.model('Users', UserSchema);
