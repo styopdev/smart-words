@@ -70,16 +70,17 @@ window.fbAsyncInit = function() {
 function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-        console.log(response);
-        console.log(response.authResponse);
-        //$.ajax({
-        //    type : "POST",
-        //    url  : "/users/create",
-        //    data : {'user' : response.name, 'email' : response.email, 'userID' : response.authResponse.userID, "socType" : "fb"},
-        //    success : function(data) {
-        //        console.log(data);
-        //    }
-        //});
+        if (response.name) {
+            $.ajax({
+                type : "POST",
+                url  : "/users/create",
+                data : {'user' : response.name, 'email' : response.email, 'id' : response.id, "socType" : "fb", 'gender' : response.gender, 'locale' :response.locale},
+                success : function(data) {
+                    console.log(data);
+                }
+            });
+        }
+
     });
 }/**
  * Created by johannes on 7/19/2015.

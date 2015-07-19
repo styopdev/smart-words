@@ -6,6 +6,8 @@ var UserSchema = new Schema({
     rate     : Number,
     userId   : String,
     email    : String,
+    locale   : String,
+    gender   : Number,
     socType  : {type: String, enum: ['fb', 'google', 'twitter']}
 });
 module.exports = mongoose.model('Users', UserSchema);
