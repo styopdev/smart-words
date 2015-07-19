@@ -48,9 +48,9 @@ window.fbAsyncInit = function() {
     //
     // These three cases are handled in the callback function.
 
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-    });
+    //FB.getLoginStatus(function(response) {
+    //    statusChangeCallback(response);
+    //});
 
 };
 
@@ -67,7 +67,7 @@ window.fbAsyncInit = function() {
 // successful.  See statusChangeCallback() for when this call is made.
 function testAPI() {
     FB.api('/me', function(response) {
-
+        console.log("95896 BLYAAAAAT!!!!");
         if (response.name) {
             $.ajax({
                 type : "POST",
