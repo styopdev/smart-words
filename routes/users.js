@@ -22,7 +22,6 @@ router.get('/rates', function(req, res, next) {
 router.post('/create', function(req, res, next) {
     var UserModel = require("../models/users");
     if (req.body) {
-        console.log(req.body)
         if (req.body.name && req.body.email && req.body.id && req.body.socType && req.body.gender && req.body.locale) {
             var userInfo = req.body;
             UserModel.findOne({"userId": userInfo.id}, function (err, exUser) {
@@ -36,7 +35,8 @@ router.post('/create', function(req, res, next) {
                         exUser.save(function (err) {
                             if (err) return next(err);
                             req.session.user_id = exUser._id;
-                            res.end();
+                            res.statusCode = 200;
+                            return res.end();
                         });
                     }
                 } else {
@@ -50,7 +50,8 @@ router.post('/create', function(req, res, next) {
                     user.save(function (err) {
                         if (err) return next(err);
                         req.session.user_id = user._id;
-                        res.end();
+                        res.statusCode = 200;
+                        return res.end();
                     });
                 }
             });
