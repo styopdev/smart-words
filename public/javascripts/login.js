@@ -74,7 +74,7 @@ function testAPI() {
                 url  : "/users/create",
                 data : {'name' : response.name, 'email' : response.email, 'id' : response.id, "socType" : "fb", 'gender' : response.gender, 'locale' :response.locale},
                 success : function(data) {
-                    console.log(data);
+
                 }
             });
         }

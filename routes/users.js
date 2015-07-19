@@ -42,8 +42,8 @@ router.post('/create', function(req, res, next) {
 
                         exUser.save(function (err) {
                             if (err) return next(err);
-                            res.send(exUser._id);
-                            return res.end();
+                            req.session.user_id = exUser._id;
+                            return res.redirect("/game/category");
                         });
                     }
                 } else {
@@ -57,8 +57,8 @@ router.post('/create', function(req, res, next) {
 
                     user.save(function (err) {
                         if (err) return next(err);
-                        res.send(user._id);
-                        return res.end();
+                        req.session.user_id = exUser._id;
+                        return res.redirect("/game/category");
                     });
                 }
             });
