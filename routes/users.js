@@ -49,7 +49,7 @@ router.post('/create', function(req, res, next) {
                     user.gender   = userInfo.gender;
                     user.save(function (err) {
                         if (err) return next(err);
-                        req.session.user_id = exUser._id;
+                        req.session.user_id = user._id;
                         res.end();
                     });
                 }
