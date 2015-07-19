@@ -70,7 +70,7 @@ window.fbAsyncInit = function() {
 function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-        console.log(response.userID);
+        console.log(response);
         console.log(response.authResponse);
         //$.ajax({
         //    type : "POST",
