@@ -1,0 +1,103 @@
+//
+doctype html
+html
+    head(lang='en')
+        title Smart Words
+        link(rel="stylesheet", href="../stylesheets/admin.css")
+        link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Rancho', type='text/css')
+        meta(charset='UTF-8')
+        meta(name='description', content='Smart Words is online game which allows you to enhance your knowledge and outlook by searching famous quotations, sayings and puzzles')
+        meta(name='keywords', content='game, quotations, sayings, puzzles, knowledge, brain activity')
+        //script(type='text/javascript', src='../javascripts/jquery-latest.min.js')
+        script(type="text/javascript", src="https://code.jquery.com/jquery-2.1.4.min.js")
+        script(type='text/javascript', src='../javascripts/scripts.js')
+        script(type='text/javascript', src='../javascripts/bootstrap.js')
+    body#admin-dashboard
+        // Created by johannes on 7/5/2015.
+        div.admin-panel
+            // navigation
+            header.admin-header
+                    nav.navbar.admin-nav.navbar-fixed-top(role="navigation")
+                        div.navbar-header
+                            button.navbar-toggle(type="button" data-toggle="collapse" data-target="#example-navbar-collapse")
+                                span.sr-only
+                                    |   Toggle navigation
+                                span.icon-bar
+                                span.icon-bar
+                                span.icon-bar
+                            a.navbar-brand.admin-logo(href="#")
+                                 div.logo-contain
+                                     img(src='../images/smart-words-logo-admin.png' alt='admin logo' class='admin-logo-icon')
+                        div.collapse.navbar-collapse#example-navbar-collapse
+                            ul.nav.navbar-nav.pull-right
+                                li
+                                    a(href='#').
+                                        Category
+                                li
+                                    a(href='#').
+                                        Level
+                                li
+                                    a(href='#').
+                                        Play
+                                li
+                                    a(href='#').
+                                        Tutorial
+                                li
+                                    a(href='#').
+                                        Rates
+                                li.admin-sign-out
+                                    a(href='#').
+                                        Sign Out
+            // content
+            div.admin-content
+                div.container
+                    div.row
+                        div.col-sm-12.col-md-12
+                            a(href="/admin/form" class="btn btn-primary pull-right vert-buffer")
+                                |   Add Question
+                            div.clearfix
+                    div.row
+                        div.col-sm-12.col-md-12
+                            table.table.table-striped.table-hover.vert-buffer
+                                tr
+                                    th
+                                        |   Id
+                                    th
+                                        |   Text
+                                    th
+                                        |   Answers
+                                    th
+                                        |   Right answer
+                                    th
+                                        |   Difficulty
+                                    th
+                                        |   Category
+                                    th(colspan="2")
+                                        |   Actions
+                                each val in questions
+                                    tr
+                                        td
+                                            |   #{val.id}
+                                        td
+                                            |   #{val.text}
+                                        td
+                                            |   #{val.answers}
+                                        td
+                                            |   #{val.rightAnswer}
+                                        td
+                                            |   #{val.difficulty}
+                                        td
+                                            |   #{val.category}
+                                        td
+                                            a(href="/admin/form?id=#{val._id}", class="btn btn-info",)
+                                                |      Edit
+                                        td
+                                            a(href="/admin/delete?id=#{val._id}", class="btn btn-danger", onclick="return confirm('Want to delete?')")
+                                                |      Delete
+            div.push
+        footer.footer
+            img(src='../images/smart-words-logo-admin.png' alt='admin logo' class='admin-logo-icon')
+            a(href='http://webandweb.info/')
+                |   ©2015 W&W LLC.
+            |   &nbsp;
+            |    All Rights Reserved

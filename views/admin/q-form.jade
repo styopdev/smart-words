@@ -1,0 +1,181 @@
+//
+doctype html
+html
+    head(lang='en')
+        title Smart Words
+        link(rel="stylesheet", href="../stylesheets/admin.css")
+        link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Rancho', type='text/css')
+        meta(charset='UTF-8')
+        meta(name='description', content='Smart Words is online game which allows you to enhance your knowledge and outlook by searching famous quotations, sayings and puzzles')
+        meta(name='keywords', content='game, quotations, sayings, puzzles, knowledge, brain activity')
+        //script(type='text/javascript', src='../javascripts/jquery-latest.min.js')
+        script(type="text/javascript", src="https://code.jquery.com/jquery-2.1.4.min.js")
+        script(type='text/javascript', src='../javascripts/scripts.js')
+        script(type='text/javascript', src='../javascripts/bootstrap.js')
+    body#admin-dashboard
+        // Created by johannes on 7/5/2015.
+        div.admin-panel
+            // navigation
+            header.admin-header
+                nav.navbar.admin-nav.navbar-fixed-top(role="navigation")
+                    div.navbar-header
+                        button.navbar-toggle(type="button" data-toggle="collapse" data-target="#example-navbar-collapse")
+                            span.sr-only
+                                |   Toggle navigation
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                        a.navbar-brand.admin-logo(href="#")
+                            div.logo-contain
+                                img(src='../images/smart-words-logo-admin.png' alt='admin logo' class='admin-logo-icon')
+                    div.collapse.navbar-collapse#example-navbar-collapse
+                        ul.nav.navbar-nav.pull-right
+                            li
+                                a(href='#').
+                                    Category
+                            li
+                                a(href='#').
+                                    Level
+                            li
+                                a(href='#').
+                                    Play
+                            li
+                                a(href='#').
+                                    Tutorial
+                            li
+                                a(href='#').
+                                    Rates
+                            li.admin-sign-out
+                                a(href='#').
+                                    Sign Out
+            // content
+            div.admin-content
+                div.container
+                    div.row
+                        div.col-sm-8.col-md-8.col-md-offset-2
+                            if (question.id)
+                                form(method="POST")
+                                    div.col-md-12
+                                        h2.text-center.
+                                            Edit Question
+                                    div.form-group
+                                        if (question.id)
+                                            input(type="hidden", name="question_id", value="#{question.id}")
+                                        div.col-md-12
+                                            label(for="edit-question1")
+                                                |   Question Text
+                                            textarea(class="form-control" id="edit-question" name="text", placeholder="Question Text" cols="100" rows="8")
+                                                |#{question.text}
+                                        br
+                                        div.col-md-12
+                                            label(for="answers_0")
+                                                |   Answer 1
+                                            input(class="form-control" id="answers_0" type="text", name="answers_0", placeholder="Answer", value="#{question.answers[0]}")
+                                        br
+                                        div.col-md-12
+                                            label(for="answers_1")
+                                                |   Answer 2
+                                            input(class="form-control" id="answers_1" type="text", name="answers_1", placeholder="Answer", value="#{question.answers[1]}")
+                                        br
+                                        div.col-md-12
+                                            label(for="answers_2")
+                                                |   Answer 3
+                                            input(class="form-control" id="answers_2" type="text", name="answers_2", placeholder="Answer", value="#{question.answers[2]}")
+                                        br
+                                        div.col-md-12
+                                            label(for="answers_3")
+                                                |   Answer 4
+                                            input(class="form-control" id="answers_3" type="text", name="answers_3", placeholder="Answer", value="#{question.answers[3]}")
+                                        br
+                                        div.col-md-12
+                                            label(for="edit-rightAnswer")
+                                                |   Right Answer
+                                            input(class="form-control" id="edit-rightAnswer" type="text", name="rightAnswer", placeholder="Right Answer", value="#{question.rightAnswer}")
+                                        br
+                                        div.form-inline
+                                            div.col-md-4
+                                                select(name="difficulty", placeholder="Difficulty" class="form-control")
+                                                    option(value="1", selected = question.difficulty == 1 ? "true" : undefined)
+                                                        |   1
+                                                    option(value="2", selected = question.difficulty == 2 ? "true" : undefined)
+                                                        |   2
+                                                    option(value="3", selected = question.difficulty == 3 ? "true" : undefined)
+                                                        |   3
+
+
+                                            div.col-md-4
+                                                select(name="category", placeholder="Category" class="form-control")
+                                                    option(value="puzzles", selected = question.category == "puzzles" ? "true" : undefined)
+                                                        |   Puzzles
+                                                    option(value="sayings", selected = question.category == "sayings" ? "true" : undefined)
+                                                        |   Sayings
+                                                    option(value="quotations", selected = question.category == "quotations" ? "true" : undefined)
+                                                        |   Quotations
+
+                                            div.col-md-4
+                                                button(class="btn btn-primary pull-right")
+                                                    |   SAVE
+                            else
+                                form(method="POST")
+                                    div.col-md-12
+                                        h2.text-center.
+                                            Add Question
+                                    div.form-group
+                                        div.col-md-12
+                                            label(for="edit-question1")
+                                                |   Question Text
+                                            textarea(class="form-control" id="edit-question" name="text", cols="100" rows="8")
+                                                |#{question.text}
+                                        br
+                                        div.col-md-12
+                                            label(for="answers_0")
+                                                |   Answer 1
+                                            input(class="form-control" id="answers_0" type="text", name="answers_0", value="")
+                                        br
+                                        div.col-md-12
+                                            label(for="answers_1")
+                                                |   Answer 2
+                                            input(class="form-control" id="answers_1" type="text", name="answers_1", value="")
+                                        br
+                                        div.col-md-12
+                                            label(for="answers_2")
+                                                |   Answer 3
+                                            input(class="form-control" id="answers_2" type="text", name="answers_2", value="")
+                                        br
+                                        div.col-md-12
+                                            label(for="answers_3")
+                                                |   Answer 4
+                                            input(class="form-control" id="answers_3" type="text", name="answers_3", value="")
+                                        br
+                                        div.col-md-12
+                                            label(for="edit-rightAnswer")
+                                                |   Right Answer
+                                            input(class="form-control" id="edit-rightAnswer" type="text", name="rightAnswer", value="")
+                                        br
+                                        div.form-inline
+                                            div.col-md-4
+                                                select(name="difficulty", placeholder="Difficulty" class="form-control")
+                                                    option(value="1")
+                                                        |   1
+                                                    option(value="2")
+                                                        |   2
+                                                    option(value="3")
+                                                        |   3
+                                            div.col-md-4
+                                                select(name="category", placeholder="Category" class="form-control")
+                                                    option(value="puzzles")
+                                                        |   Puzzles
+                                                    option(value="sayings")
+                                                        |   Sayings
+                                                    option(value="quotations")
+                                                        |   Quotations
+                                            div.col-md-4
+                                                button(class="btn btn-primary pull-right")
+                                                    |   SAVE
+            div.push
+        footer.footer
+            img(src='../images/smart-words-logo-admin.png' alt='admin logo' class='admin-logo-icon')
+            a(href='http://webandweb.info/')
+                |   ©2015 W&W LLC.
+            |   &nbsp;
+            |    All Rights Reserved

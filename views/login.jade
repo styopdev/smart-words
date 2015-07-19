@@ -8,7 +8,9 @@ html(lang='en')
         meta(name='description', content='Smart Words is online game which allows you to enhance your knowledge and outlook by searching famous quotations, sayings and puzzles')
         meta(name='keywords', content='game, quotations, sayings, puzzles, knowledge, brain activity')
         script(type='text/javascript', src='../javascripts/jquery-latest.min.js')
+        script(type='text/javascript', src='../javascripts/login.js')
     body
+        #fb-root
         .wrapper
             header
                 .row
@@ -20,7 +22,9 @@ html(lang='en')
                     p
                         | Nullam commodo at turpis ac venenatis. Fusce id ligula eros. Sed quis ex in turpis sagittis aliquet. In nunc libero, varius non eros eget, pharetra maximus urna. Nam ut tortor euismod, tristique augue suscipit, convallis orci. Donec facilisis id neque ut feugiat.
                     .social-login-links
-                        a.social-login.fb-login(href='#') Login With Facebook
+                        fb:login-button(scope='public_profile,email', onlogin='checkLoginState();')
+                            |   Login with Facebook
+
                 .screens.row
                     .screen-1
                         img(src='../images/screenshots/small-1.jpg')

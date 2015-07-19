@@ -1,22 +1,10 @@
-/* line 44, ../sass/screen.scss */
-html, body {
-    height: 100%;
-}
-
-/* line 47, ../sass/screen.scss */
+@import "base.css";
 body {
     background: #233067;
     color: #FEFB64;
     font: 400 24px/1.0 'Rancho', Helvetica, Sans-serif;
     height: 100%;
-    margin: 0px;
-    padding: 0px;
 }
-/* line 53, ../sass/screen.scss */
-body a {
-    color: white;
-}
-
 /* line 58, ../sass/screen.scss */
 .wrapper {
     width: 600px;

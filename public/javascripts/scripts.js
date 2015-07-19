@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
+    // responsive navbar
+        $(".main-menu").click(function(){
+            $(".main-menu").slideToggle();
+        });
+        $(window).resize(function(){
+            $(".main-menu").removeAttr("style");
+        });
+
     // Audio Player
     var playing = false;
 
