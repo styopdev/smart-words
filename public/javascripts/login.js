@@ -71,7 +71,7 @@ function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
         console.log('Successful login for: ' + response.name);
-        console.log(response);
+        console.log(response.email);
     });
 }/**
  * Created by johannes on 7/19/2015.
