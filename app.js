@@ -85,13 +85,13 @@ mongoose.connect('mongodb://webandweb:webandweb@ds045632.mongolab.com:45632/hero
 });
 
 
-/*mongoose.connect('mongodb://localhost/smart-words', function(err) {
-    if (err) {
-        throw err;
-    } else {
-        console.log("Connected!!!");
-    }
-});*/
+//mongoose.connect('mongodb://localhost/smart-words', function(err) {
+//    if (err) {
+//        throw err;
+//    } else {
+//        console.log("Connected!!!");
+//    }
+//});
 
 
 

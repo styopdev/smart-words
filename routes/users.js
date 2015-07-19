@@ -26,4 +26,44 @@ router.get('/rates', function(req, res, next) {
     });
 });
 
+router.post('/create', function(req, res, next) {
+    var UserModel = require("../models/users");
+    if (req.body) {
+        console.log(req.body)
+        if (req.body.username || req.body.email || req.body.userID || req.body.socType) {
+            var userInfo = req.body;
+            UserModel.findOne({"userId": userInfo.userID}, function (err, exUser) {
+                if (err) return next(err);
+                if (exUser) {
+                    if (exUser.email != userInfo.email || exUser.username != userInfo.name) {
+                        exUser.email = userInfo.email;
+                        exUser.username = userInfo.name;
+                        exUser.save(function (err) {
+                            if (err) return next(err);
+                            res.send(exUser._id);
+                            return res.end();
+                        });
+                    }
+                } else {
+                    var user = new UserModel();
+                    user.username = userInfo.user;
+                    user.email = userInfo.email;
+                    user.userId = userInfo.userID;
+                    user.socType = userInfo.socType;
+                    user.save(function (err) {
+                        if (err) return next(err);
+                        res.send(user._id);
+                        return res.end();
+                    });
+                }
+            });
+        } else {
+            res.statusCode = 400;
+            return res.end();
+        }
+    } else {
+        res.statusCode = 400;
+        return res.end();
+    }
+});
 module.exports = router;

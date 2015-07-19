@@ -4,6 +4,8 @@ var Schema   = mongoose.Schema;
 var UserSchema = new Schema({
     username : String,
     rate     : Number,
-    socId    : String
+    userId   : String,
+    email    : String,
+    socType  : {type: String, enum: ['fb', 'google', 'twitter']}
 });
 module.exports = mongoose.model('Users', UserSchema);
