@@ -3,16 +3,9 @@ var router   = express.Router();
 var mongoose = require("mongoose");
 /* GET users listing. */
 router.get('/login', function(req, res, next) {
-    var UserModel = require("../models/users");
-    var user = new UserModel();
-    user.username = "styopdev";
-    user.rate     = 1000;
-    user.socId    = "egljerugheilgherg45645f";
-    user.socType  = "twitter";
-    user.save(function(err){
-        console.log(err);
-    });
-    res.render('login');
+    if (!req.session.user_id)
+      return res.render('login');
+    return res.redirect('/game/category');
 });
 
 router.get('/rates', function(req, res, next) {
