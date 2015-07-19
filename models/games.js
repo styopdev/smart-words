@@ -7,6 +7,6 @@ var GameSchema = new Schema({
     levels   : [Number],
     curLevel : Number,
     hintNum  : Number,
-      : Number
+    skipNum  : Number
 });
 module.exports = mongoose.model('Games', GameSchema);
