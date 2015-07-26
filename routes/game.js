@@ -12,9 +12,9 @@ router.get('/tutorial', function(req, res, next) {
 
 
 router.get('/levels', function(req, res, next) {
-    //if (!req.session.user_id) {
-    //    return res.redirect("/users/login");
-    //}
+    if (!req.session.user_id) {
+        return res.redirect("/users/login");
+    }
     var category = req.query.category;
     if (category) {
         var gameModel = require("../models/games");
@@ -44,6 +44,9 @@ router.get('/levels', function(req, res, next) {
 
 
 router.get('/play', function(req, res, next) {
+    if (!req.session.user_id) {
+        return res.redirect("/users/login");
+    }
     var gameModel = require("../models/games");
     var questionModel = require("../models/questions");
     var gameID = req.query.game_id;
@@ -72,6 +75,9 @@ router.get('/play', function(req, res, next) {
 });
 
 router.get('/nextLevel', function(req, res, next) {
+    if (!req.session.user_id) {
+        return res.redirect("/users/login");
+    }
     var gameModel = require("../models/games");
     var game_id   = req.query.game_id;
     var level     = parseInt(req.query.level);
@@ -108,6 +114,9 @@ router.get('/nextLevel', function(req, res, next) {
 });
 
 router.get('/decrementHint', function(req, res, next) {
+    if (!req.session.user_id) {
+        return res.redirect("/users/login");
+    }
     var gameModel = require("../models/games");
     var updateObject = req.query.hintType == "hintNum" ? {"$inc" : {"hintNum" : -1}} : {"$inc" : {"skipNum" : -1}};
     var game_id  = req.query.game_id;
