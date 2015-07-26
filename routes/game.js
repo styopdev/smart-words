@@ -92,7 +92,8 @@ router.get('/nextLevel', function(req, res, next) {
                 }
             } else {
                 game.curLevel = level + 1;
-                game.levels = [];
+                if (!game.levels)
+                    game.levels = [];
                 game.levels.push(parseInt(score));
 
                 game.save(function(err) {
