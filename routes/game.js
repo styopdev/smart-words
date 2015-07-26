@@ -86,7 +86,7 @@ router.get('/nextLevel', function(req, res, next) {
                     game.save(function(err) {
                         if (err) return next(err);
                         else {
-                            return res.redirect("/play/game?level" + level);
+                            return res.redirect("/play/game?level=" + level);
                         }
                     });
                 }
@@ -97,7 +97,7 @@ router.get('/nextLevel', function(req, res, next) {
                 game.save(function(err) {
                     if (err) return next(err);
                     else {
-                        return res.redirect("/play/game?level" + level);
+                        return res.redirect("/play/game?level=" + level);
                     }
                 });
             }
