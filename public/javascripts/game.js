@@ -116,7 +116,11 @@ $(document).ready(function(){
             $('.percent').html(progressStep + "% Complete");
             rightAnsweredCount++;
             if (rightAnsweredCount + wrongAnsweredCount == 5 ) {
-                showWinPopup();
+                if (wrongAnsweredCount >= 3) {
+                    showFailedPopup();
+                } else {
+                    showWinPopup();
+                }
             } else {
                 changeQuestion();
             }
@@ -132,7 +136,8 @@ $(document).ready(function(){
                 changeQuestion();
             }
         }
-    })
+    });
+
     function changeQuestion()
     {
         questionIndex++;
