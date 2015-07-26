@@ -46,7 +46,7 @@ router.get('/levels', function(req, res, next) {
 router.get('/play', function(req, res, next) {
     var gameModel = require("../models/games");
     var questionModel = require("../models/questions");
-    var gameID   = req.query.game_id;
+    var gameID = req.query.game_id;
 
     if (!gameID) {
         var err = new Error();
@@ -58,11 +58,11 @@ router.get('/play', function(req, res, next) {
         if (err) {
             next(err);
         } else {
-            var level = req.query.level ? req.query.level : game.curLevel;
+            var level = req.query.level ? req.query.level : game[0].curLevel;
             var difficulty = level <= 4 ? 1 : (level <= 8) ? 2 : 3;
             questionModel.find({"category": game[0].category, "difficulty":  difficulty}, function(err, questions){
                 if (err) {
-                    next(err);
+                    return next(err);
                 } else {
                     res.render('play', {"questions": questions, "game": game[0], "level" : level});
                 }
@@ -74,10 +74,10 @@ router.get('/play', function(req, res, next) {
 router.get('/nextLevel', function(req, res, next) {
     var gameModel = require("../models/games");
     var game_id   = req.query.game_id;
-    var level     = req.query.level;
+    var level     = parseInt(req.query.level);
     var score     = req.query.score;
 
-    gameModel.find({"_id" : game_id}, function(err, game) {
+    gameModel.findOne({"_id" : game_id}, function(err, game) {
         if (err) return next(err);
         else {
             if (level < game.curLevel) {
@@ -86,18 +86,19 @@ router.get('/nextLevel', function(req, res, next) {
                     game.save(function(err) {
                         if (err) return next(err);
                         else {
-                            return res.redirect("/play/game?level=" + level);
+                            return res.redirect("/game/play?level=" + (level +1) + "&game_id=" + game_id);
                         }
                     });
                 }
             } else {
                 game.curLevel = level + 1;
-                game.levels.push(score);
+                game.levels = [];
+                game.levels.push(parseInt(score));
 
                 game.save(function(err) {
                     if (err) return next(err);
                     else {
-                        return res.redirect("/play/game?level=" + level);
+                        return res.redirect("/game/play?level=" + game.curLevel + "&game_id=" + game_id);
                     }
                 });
             }
