@@ -79,8 +79,11 @@ body {
 }
 /* line 122, ../sass/screen.scss */
 .wrapper .content .options .hint #play-music {
-    background: url("../images/gclef.png") center no-repeat #ffffff;
+    background: url("../images/gclef-off.png") center no-repeat #ffffff;
     background-size: contain;
+}
+.wrapper .content .options .hint .down#music #play-music {
+    background: url("../images/gclef.png") center no-repeat #ffffff;
 }
 /* line 126, ../sass/screen.scss */
 .wrapper .content .options .hint #get-help {
@@ -102,6 +105,7 @@ body {
     background: url("../images/gclef.png") center no-repeat #ffffff;
     background-size: contain;
 }
+
 /* line 144, ../sass/screen.scss */
 .wrapper .content .options .hint #get-help-tuts {
     background: url("../images/trash-512.png") center no-repeat #ffffff;
@@ -741,4 +745,7 @@ background-color : #A8A8A8 !important;
 color:#FFFFFF !important;
 border-color:#9ACD32 !important;
 pointer-events: none !important;
+}
+#win-popup {
+    background-color: #3DCC01;
 }

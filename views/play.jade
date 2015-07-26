@@ -21,7 +21,7 @@ html(lang="en")
                 div.options.row
                     div.hint
                         div#back-link.circle
-                            a(href="#" id="goback" class="get-hint" title="Go Back")
+                            a(href="" id="goback" class="get-hint" title="Go Back")
                     div.hint
                         audio(id="player" src="../heiveinu-shalom-aleichem.mp3")
                         a(id="music" class="get-hint" title="Play Music")
@@ -76,16 +76,31 @@ html(lang="en")
                 p © 2015 WebandWeb.
         div#time-box.time-popup
             fieldset.textbox
-                h2#timeOver.
-                    Time is over :(
-                h2#wrongAnswer.
-                    Wrong answer o_0
-                p.
-                    Do you want to start a new game?
-                a.submit.decision(onclick="location.reload();").
-                    Yes
-                a.submit.decision(href="/game/levels?category="+game.category).
-                    No
+                h2#timeOver
+                    |   Time is over :(
+                h2#wrongAnswer
+                    |   Wrong answer o_0
+                p
+                    |   Do you want to start a new game?
+                a.submit.decision(onclick="location.reload();")
+                    |   Yes
+                a.submit.decision(href="/game/levels?category=" + game.category)
+                    |   No
+        div#win-popup.time-popup
+            fieldset.textbox
+                h2
+                    |   You Won :)
+                a.submit.decision(onclick="location.reload();")
+                    |   Play Again
+                a#go-next-level.submit.decision(href="/game/nextLevel?game_id=" + game.id + "&level=" + level)
+                    |   Next Level >
+        div#defeat-popup.time-popup
+            fieldset.textbox
+                h2
+                    |   Defeated :(
+                a.submit.decision(onclick="location.reload();")
+                    |   Play Again
+
 script(type="text/javascript").
     var questions = !{JSON.stringify(questions)};
     var game_id   = !{JSON.stringify(game.id)};

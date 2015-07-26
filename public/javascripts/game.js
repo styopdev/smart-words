@@ -14,8 +14,21 @@ $(document).ready(function(){
             if (count !== 0.00) {
                 if(count <= 0.10){
                     $(this).html((count - 0.01).toFixed(2));
-                }else{
-                    $(this).html((count - 0.05).toFixed(2));
+                } else {
+                    if ($(this).html() == 5.00) {
+                        $(this).html(4.55);
+                    } else if ($(this).html() == 4.00) {
+                        $(this).html(3.55);
+                    }  else if ($(this).html() == 3.00) {
+                        $(this).html(2.55);
+                    } else if ($(this).html() == 2.00) {
+                        $(this).html(1.55);
+                    } else if ($(this).html() == 1.00) {
+                        $(this).html(3.55);
+                    } else {
+                        $(this).html((count - 0.05).toFixed(2));
+                    }
+
                     if((count - 0.05).toFixed(2) == 0.1){
                         //   alert('++');
                         intervalSize = 1000;
@@ -97,42 +110,24 @@ $(document).ready(function(){
     var progressStep = 0;
     $(document).on("click", ".answer", function(){
         if ($(this).hasClass("right")) {
-            alert("right")
             var currentProgress = $('#progress-bar').val();  // get current progress value
             progressStep += 20;
             $('#progress-bar').val(currentProgress + 20); // shift one step forward
             $('.percent').html(progressStep + "% Complete");
             rightAnsweredCount++;
             if (rightAnsweredCount + wrongAnsweredCount == 5 ) {
-                alert("Win")
+                showWinPopup();
             } else {
                 changeQuestion();
             }
         } else {
             wrongAnsweredCount++;
             if (rightAnsweredCount + wrongAnsweredCount == 5 ) {
-                alert("Win")
-                return;
-            } else {
-                changeQuestion();
-                return;
-            }
-            alert("wrongAnswers")
-            if (wrongAnsweredCount == 3) {
-                var loginBox = document.getElementById('time-box');
-                //Fade in the Popup
-                $(loginBox).fadeIn(300);
-                //Set the center alignment padding + border see css style
-                var popMargTop = ($(loginBox).height() + 24) / 2;
-                var popMargLeft = ($(loginBox).width() + 24) / 2;
-                $(loginBox).css({
-                    'margin-top' : -popMargTop,
-                    'margin-left' : -popMargLeft
-                });
-                // Add the mask to body
-                $('body').append('<div id="mask"></div>');
-                $("#wrongAnswer").css("display", "block")
-                $('#mask').fadeIn(300);
+                if (wrongAnsweredCount >= 3) {
+                    showFailedPopup();
+                } else {
+                    showWinPopup();
+                }
             } else {
                 changeQuestion();
             }
@@ -159,5 +154,47 @@ $(document).ready(function(){
         }
         wrongAnswers = $(".choose-answers .wrong");
     }
-});// complete click
+    
+    $("#back-link").click(function () {
+        window.location = "/game/levels";
+    });
+
+    function showWinPopup()
+    {
+        var loginBox = document.getElementById('win-popup');
+        //Fade in the Popup
+        $(loginBox).fadeIn(300);
+        //Set the center alignment padding + border see css style
+        var popMargTop = ($(loginBox).height() + 24) / 2;
+        var popMargLeft = ($(loginBox).width() + 24) / 2;
+        $(loginBox).css({
+            'margin-top' : -popMargTop,
+            'margin-left' : -popMargLeft
+        });
+        var score = "&score=" + rightAnsweredCount;
+        $("#go-next-level").attr("href", $("#go-next-level").attr("href") + score);
+        // Add the mask to body
+        $('body').append('<div id="mask"></div>');
+        $("#timeOver").css("display", "block")
+        $('#mask').fadeIn(300);
+    }
+
+    function showFailedPopup()
+    {
+        var loginBox = document.getElementById('defeat-popup');
+        //Fade in the Popup
+        $(loginBox).fadeIn(300);
+        //Set the center alignment padding + border see css style
+        var popMargTop = ($(loginBox).height() + 24) / 2;
+        var popMargLeft = ($(loginBox).width() + 24) / 2;
+        $(loginBox).css({
+            'margin-top' : -popMargTop,
+            'margin-left' : -popMargLeft
+        });
+        // Add the mask to body
+        $('body').append('<div id="mask"></div>');
+        $("#timeOver").css("display", "block")
+        $('#mask').fadeIn(300);
+    }
+});
 

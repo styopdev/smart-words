@@ -22,12 +22,9 @@ router.get('/rates', function(req, res, next) {
 router.post('/create', function(req, res, next) {
     var UserModel = require("../models/users");
     if (req.body) {
-        console.log("MESSAGE -" + 1);
         if (req.body.name && req.body.email && req.body.id && req.body.socType && req.body.gender && req.body.locale) {
-            console.log("MESSAGE -" + 2);
             var userInfo = req.body;
             UserModel.findOne({"userId": userInfo.id}, function (err, exUser) {
-                console.log("MESSAGE -" + 3);
                 if (err) return next(err);
                 if (exUser) {
                     if (exUser.email != userInfo.email || exUser.username != userInfo.name || exUser.locale != userInfo.locale) {
@@ -42,13 +39,11 @@ router.post('/create', function(req, res, next) {
                             return res.end();
                         });
                     } else {
-                        console.log("MESSAGE -" + 4);
                         req.session.user_id = exUser._id;
                         res.statusCode = 200;
                         return res.end();
                     }
                 } else {
-                    console.log("MESSAGE -" + 5);
                     var user = new UserModel();
                     user.username = userInfo.name;
                     user.email    = userInfo.email;

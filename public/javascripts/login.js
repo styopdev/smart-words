@@ -67,7 +67,6 @@ window.fbAsyncInit = function() {
 // successful.  See statusChangeCallback() for when this call is made.
 function testAPI() {
     FB.api('/me', function(response) {
-        console.log("95896 BLYAAAAAT!!!!");
         if (response.name) {
             $.ajax({
                 type : "POST",
@@ -78,7 +77,6 @@ function testAPI() {
                 }
             });
         }
-
     });
 }/**
  * Created by johannes on 7/19/2015.

@@ -37,36 +37,36 @@ $(document).ready(function(){
 
 
 
-    $('.bar span').click(function(){
-        var progressStep = 20;
-        if ($(this).hasClass('first')){
-            $('#progress-bar').val(progressStep);
-            $(this).nextAll().removeClass('border-change');
-            $('.percent').html("20% Complete");
-        }else if ($(this).hasClass('second')){
-            $(this).nextAll().removeClass('border-change');
-            $('#progress-bar').val(progressStep * 2);
-            $(this).prevAll().addClass('border-change');
-            $(this).addClass('border-change');
-            $('.percent').html("40% Complete");
-        }else if ($(this).hasClass('third')){
-            $(this).nextAll().removeClass('border-change');
-            $('#progress-bar').val(progressStep * 3);
-            $(this).prevAll().addClass('border-change');
-            $(this).addClass('border-change');
-            $('.percent').html("60% Complete");
-        }else if ($(this).hasClass('fourth')){
-            $(this).nextAll().removeClass('border-change');
-            $('#progress-bar').val(progressStep * 4);
-            $(this).prevAll().addClass('border-change');
-            $(this).addClass('border-change');
-            $('.percent').html("80% Complete");
-        }else if ($(this).hasClass('fifth')){
-            $(this).nextAll().removeClass('border-change');
-            $('#progress-bar').val(progressStep * 5);
-            $(this).prevAll().addClass('border-change');
-            $(this).addClass('border-change');
-            $('.percent').html("100% Complete");
-        }
-    });
+    //$('.bar span').click(function(){
+    //    var progressStep = 20;
+    //    if ($(this).hasClass('first')){
+    //        $('#progress-bar').val(progressStep);
+    //        $(this).nextAll().removeClass('border-change');
+    //        $('.percent').html("20% Complete");
+    //    }else if ($(this).hasClass('second')){
+    //        $(this).nextAll().removeClass('border-change');
+    //        $('#progress-bar').val(progressStep * 2);
+    //        $(this).prevAll().addClass('border-change');
+    //        $(this).addClass('border-change');
+    //        $('.percent').html("40% Complete");
+    //    }else if ($(this).hasClass('third')){
+    //        $(this).nextAll().removeClass('border-change');
+    //        $('#progress-bar').val(progressStep * 3);
+    //        $(this).prevAll().addClass('border-change');
+    //        $(this).addClass('border-change');
+    //        $('.percent').html("60% Complete");
+    //    }else if ($(this).hasClass('fourth')){
+    //        $(this).nextAll().removeClass('border-change');
+    //        $('#progress-bar').val(progressStep * 4);
+    //        $(this).prevAll().addClass('border-change');
+    //        $(this).addClass('border-change');
+    //        $('.percent').html("80% Complete");
+    //    }else if ($(this).hasClass('fifth')){
+    //        $(this).nextAll().removeClass('border-change');
+    //        $('#progress-bar').val(progressStep * 5);
+    //        $(this).prevAll().addClass('border-change');
+    //        $(this).addClass('border-change');
+    //        $('.percent').html("100% Complete");
+    //    }
+    //});
 });// complete click
