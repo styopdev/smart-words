@@ -4,10 +4,6 @@
     <list default="true" id="daa1ea82-b9f6-4cd5-aa2d-7f84f61cff7f" name="Default" comment="">
       <change type="DELETED" beforePath="C:\Users\johannes\Desktop\smart-words\bin\www" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/game.js" afterPath="$PROJECT_DIR$/routes/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/levels.jade" afterPath="$PROJECT_DIR$/views/levels.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/login.js" afterPath="$PROJECT_DIR$/public/javascripts/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/users.js" afterPath="$PROJECT_DIR$/models/users.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="smart-words-game.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,8 +40,8 @@
       <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60940325" vertical-offset="2879" max-vertical-offset="4128">
-              <caret line="134" column="42" selection-start-line="134" selection-start-column="42" selection-end-line="134" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.6528029" vertical-offset="2807" max-vertical-offset="4128">
+              <caret line="132" column="65" selection-start-line="132" selection-start-column="65" selection-end-line="132" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -816,8 +812,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60940325" vertical-offset="2879" max-vertical-offset="4128">
-          <caret line="134" column="42" selection-start-line="134" selection-start-column="42" selection-end-line="134" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.6528029" vertical-offset="2807" max-vertical-offset="4128">
+          <caret line="132" column="65" selection-start-line="132" selection-start-column="65" selection-end-line="132" selection-end-column="65" />
           <folding />
         </state>
       </provider>
