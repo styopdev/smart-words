@@ -78,6 +78,7 @@ router.get('/nextLevel', function(req, res, next) {
     if (!req.session.user_id) {
         return res.redirect("/users/login");
     }
+    var userModel = require("../models/users");
     var gameModel = require("../models/games");
     var game_id   = req.query.game_id;
     var level     = parseInt(req.query.level);
@@ -92,7 +93,7 @@ router.get('/nextLevel', function(req, res, next) {
                     game.save(function(err) {
                         if (err) return next(err);
                         else {
-                            return res.redirect("/game/play?level=" + (level +1) + "&game_id=" + game_id);
+                            calculateUserRate(1);
                         }
                     });
                 }
@@ -105,10 +106,39 @@ router.get('/nextLevel', function(req, res, next) {
                 game.save(function(err) {
                     if (err) return next(err);
                     else {
-                        return res.redirect("/game/play?level=" + game.curLevel + "&game_id=" + game_id);
+                        calculateUserRate(0);
                     }
                 });
             }
+        }
+        function calculateUserRate(isNewLevel) {
+            gameModel.find({"userId" : req.session.user_id}, function(err, games) {
+                if (err) return next(err);
+                else {
+                    var score = 0;
+                    var coef  = 0;
+
+                    for (var key in games) {
+                        for (var levelKey in games[key].levels) {
+                            if (parseInt(levelKey < 5)) {
+                                coef = 10;
+                            } else if (parseInt(levelKey < 9)) {
+                                coef = 15;
+                            } else {
+                                coef = 20;
+                            }
+                            score += coef * games[key].levels[levelKey];
+                        }
+                    }
+                    userModel.updateById(req.session.user_id, {"$set" : {"score" : score}}, function() {
+                        if (isNewLevel) {
+                            return res.redirect("/game/play?level=" + game.curLevel + "&game_id=" + game_id);
+                        } else {
+                            return res.redirect("/game/play?level=" + (level +1) + "&game_id=" + game_id);
+                        }
+                    });
+                }
+            });
         }
     });
 });
