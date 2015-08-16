@@ -750,5 +750,5 @@ pointer-events: none !important;
     background-color: #3DCC01;
 }
 #view-more a {
-    display: -webkit-box;
+    display: block;
 }
