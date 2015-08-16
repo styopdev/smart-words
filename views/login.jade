@@ -22,9 +22,8 @@ html(lang='en')
                     p
                         | Nullam commodo at turpis ac venenatis. Fusce id ligula eros. Sed quis ex in turpis sagittis aliquet. In nunc libero, varius non eros eget, pharetra maximus urna. Nam ut tortor euismod, tristique augue suscipit, convallis orci. Donec facilisis id neque ut feugiat.
                     .social-login-links
-                        fb:login-button(scope='public_profile,email', onlogin='checkLoginState();')
+                        fb:login-button#fb-native(scope='public_profile,email', onlogin='checkLoginState();')
                             |   Login with Facebook
-
                 .screens.row
                     .screen-1
                         img(src='../images/screenshots/small-1.jpg')

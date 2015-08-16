@@ -78,6 +78,13 @@ function testAPI() {
             });
         }
     });
-}/**
+}
+
+$(function(){
+    $('.fb-login').click(function(){
+        $('._4z_f').trigger("click");
+    });
+})
+/**
  * Created by johannes on 7/19/2015.
  */
