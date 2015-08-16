@@ -115,32 +115,37 @@ router.get('/nextLevel', function(req, res, next) {
             gameModel.find({"userId" : req.session.user_id}, function(err, games) {
                 if (err) return next(err);
                 else {
-                    var score = 0;
+                    var rating = 0;
                     var coef  = 0;
 
-                    for (var key in games) {
-                        for (var levelKey in games[key].levels) {
-                            if (parseInt(levelKey < 5)) {
+                    for (var i = 0; i < games.length; i++) {
+                        for (var j = 0; j < games[i].levels.length; j++) {
+                            if (parseInt(j < 5)) {
                                 coef = 10;
-                            } else if (parseInt(levelKey < 9)) {
+                            } else if (parseInt(j < 9)) {
                                 coef = 15;
                             } else {
                                 coef = 20;
                             }
-                            score += coef * games[key].levels[levelKey];
+                            rating += (coef * parseInt(games[i].levels[j]));
                         }
                     }
-                    userModel.findOne({"id" : req.session.user_id}, function(err, user) {
+                    userModel.findOne({"_id" : req.session.user_id}, function(err, user) {
                         if (err) return next(err);
                         else if (!user) {
                             var err = new Error();
                             err.statusCode = 404;
                             return next(err);
                         } else {
-                            user.score = score;
+                            user.score = rating;
+
+                            console.log("======")
+                            console.log(rating)
+                            console.log("=======")
+                            console.log(user)
                             user.save(function(err) {
                                 if (err) return next(err);
-                                
+
                                 if (isNewLevel) {
                                     return res.redirect("/game/play?level=" + game.curLevel + "&game_id=" + game_id);
                                 } else {

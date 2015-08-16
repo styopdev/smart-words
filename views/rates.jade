@@ -63,72 +63,17 @@ html(lang='en')
                                 th.user-image Image
                                 th.user-name Username
                                 th.user-scores Scores
-                            tr
-                                td.user-number 1
-                                td.user-image
-                                    img(src='../images/profile/1.jpg', alt='profile picture', width='50', height='50')
-                                td.user-name Name
-                                td.user-scores 5782
-                            tr
-                                td.user-number 2
-                                td.user-image
-                                    img(src='../images/profile/2.png', alt='profile picture', width='50', height='50')
-                                td.user-name Name
-                                td.user-scores 5653
-                            tr
-                                td.user-number 3
-                                td.user-image
-                                    img(src='../images/profile/3.png', alt='profile picture', width='50', height='50')
-                                td.user-name Name
-                                td.user-scores 5101
-                            tr
-                                td.user-number 4
-                                td.user-image
-                                    img(src='../images/profile/4.jpeg', alt='profile picture', width='50', height='50')
-                                td.user-name Name
-                                td.user-scores 4850
-                            tr
-                                td.user-number 5
-                                td.user-image
-                                    img(src='../images/profile/1.jpg', alt='profile picture', width='50', height='50')
-                                td.user-name Name
-                                td.user-scores 4576
-                            tr
-                                td.user-number 6
-                                td.user-image
-                                    img(src='../images/profile/2.png', alt='profile picture', width='50', height='50')
-                                td.user-name Name
-                                td.user-scores 4123
-                            tr
-                                td.user-number 7
-                                td.user-image
-                                    img(src='../images/profile/3.png', alt='profile picture', width='50', height='50')
-                                td.user-name Name
-                                td.user-scores 3823
-                            tr
-                                td.user-number 8
-                                td.user-image
-                                    img(src='../images/profile/4.jpeg', alt='profile picture', width='50', height='50')
-                                td.user-name Name
-                                td.user-scores 3753
-                            tr
-                                td.user-number 9
-                                td.user-image
-                                    img(src='../images/profile/2.png', alt='profile picture', width='50', height='50')
-                                td.user-name Name
-                                td.user-scores 3523
-                            tr
-                                td.user-number 10
-                                td.user-image
-                                    img(src='../images/profile/3.png', alt='profile picture', width='50', height='50')
-                                td.user-name Name
-                                td.user-scores 3214
-                            tr#owner-row
-                                td.user-number 24
-                                td.user-image
-                                    img(src='../images/profile/2.png', alt='profile picture', width='50', height='50')
-                                td.user-name Name
-                                td.user-scores 568
+                            each val, index in users
+                                tr(id = (val.id == user_id) ? "owner-row" : undefined)
+                                    td.user-number
+                                        |   #{index+1}
+                                    td.user-image
+                                        img(src='http://graph.facebook.com/#{val.userId}/picture', alt='profile picture', width='50', height='50')
+                                    td.user-name
+                                        |   #{val.username}
+                                    td.user-scores
+                                        |   #{val.score}
+
             .push
         footer
             .copyright

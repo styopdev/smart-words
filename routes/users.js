@@ -3,6 +3,7 @@ var router   = express.Router();
 var mongoose = require("mongoose");
 /* GET users listing. */
 router.get('/login', function(req, res, next) {
+    req.session.user_id = "55abccbe4fc2e9110096852f";
     if (!req.session.user_id)
       return res.render('login');
     return res.redirect('/game/category');
@@ -13,11 +14,16 @@ router.get('/rates', function(req, res, next) {
         return res.redirect("/users/login");
     }
     var UserModel = require("../models/users");
-    UserModel.findOne({"_id" : req.session.user_id}, function(err, result){
+    UserModel.find({}, function(err, result){
         if (err) {
             next(err);
         } else {
-            res.render("../views/rates",{users:result});
+            result = result.sort(function(a, b) {
+               if (a.score > b.score) return -1;
+               if (a.score < b.score) return 1;
+               else return 0;
+            });
+            res.render("../views/rates", {users:result, user_id : req.session.user_id});
         }
     });
 });
