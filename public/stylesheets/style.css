@@ -176,10 +176,15 @@ body {
     background: #f9f7f7;
     border: 2px solid #FFA834;
 }
+
+.wrapper .content .login p {
+    font-size: 18px;
+}
 /* line 203, ../sass/screen.scss */
 .wrapper .content .login .social-login-links {
     margin: 10px 0;
-    padding: 30px 0;
+    padding: 20px 0;
+    text-align: center;
 }
 /* line 205, ../sass/screen.scss */
 .wrapper .content .login .social-login-links a.social-login {
@@ -233,7 +238,7 @@ body {
     display: inline-table;
     width: 105px;
     height: 105px;
-    margin: 40px 30px;
+    margin: 10px 30px;
     text-align: center;
     font-size: 18px;
     line-height: 1.5;
@@ -242,6 +247,13 @@ body {
 .wrapper .content .categories .choose-categories a.category:hover {
     background: #F4EB49;
     border: 2px solid #ffffff;
+}
+.wrapper .content .categories .category-desc h2 {
+    font-size: 24px;
+}
+.wrapper .content .categories .category-desc p {
+    font-size: 18px;
+    color: #ffffff;
 }
 /* line 261, ../sass/screen.scss */
 .wrapper .content .rates .top-players li.player {
