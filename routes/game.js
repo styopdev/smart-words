@@ -131,9 +131,9 @@ router.get('/nextLevel', function(req, res, next) {
                         }
                     }
                     userModel.update({"id" : req.session.user_id}, {"$set" : {"score" : score}}, function(err, numAffected) {
-                        response.write(JSON.stringify(err));
-                        response.write(JSON.stringify(numAffected));
-                        response.end();
+                        res.write(JSON.stringify(err));
+                        res.write(JSON.stringify(numAffected));
+                        res.end();
                         if (isNewLevel) {
                             return res.redirect("/game/play?level=" + game.curLevel + "&game_id=" + game_id);
                         } else {
