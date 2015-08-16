@@ -130,7 +130,10 @@ router.get('/nextLevel', function(req, res, next) {
                             score += coef * games[key].levels[levelKey];
                         }
                     }
-                    userModel.update({"id" : req.session.user_id}, {"$set" : {"score" : score}}, function() {
+                    userModel.update({"id" : req.session.user_id}, {"$set" : {"score" : score}}, function(err, numAffected) {
+                        response.write(JSON.stringify(err));
+                        response.write(JSON.stringify(numAffected));
+                        response.end();
                         if (isNewLevel) {
                             return res.redirect("/game/play?level=" + game.curLevel + "&game_id=" + game_id);
                         } else {
