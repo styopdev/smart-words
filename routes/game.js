@@ -130,14 +130,23 @@ router.get('/nextLevel', function(req, res, next) {
                             score += coef * games[key].levels[levelKey];
                         }
                     }
-                    userModel.update({"id" : req.session.user_id}, {"$set" : {"score" : score}}, function(err, numAffected) {
-                        res.write(JSON.stringify(err));
-                        res.write(JSON.stringify(numAffected));
-                        res.end();
-                        if (isNewLevel) {
-                            return res.redirect("/game/play?level=" + game.curLevel + "&game_id=" + game_id);
+                    userModel.findOne({"id" : req.session.user_id}, function(err, user) {
+                        if (err) return next(err);
+                        else if (!user) {
+                            var err = new Error();
+                            err.statusCode = 404;
+                            return next(err);
                         } else {
-                            return res.redirect("/game/play?level=" + (level +1) + "&game_id=" + game_id);
+                            user.score = score;
+                            user.save(function(err) {
+                                if (err) return next(err);
+                                
+                                if (isNewLevel) {
+                                    return res.redirect("/game/play?level=" + game.curLevel + "&game_id=" + game_id);
+                                } else {
+                                    return res.redirect("/game/play?level=" + (level +1) + "&game_id=" + game_id);
+                                }
+                            })
                         }
                     });
                 }
