@@ -71,6 +71,14 @@ html
                         span.fourth
                         span.fifth
                         p#completion-level.percent(title='Level of completion') 0% Complete
+                div#start-game.time-popup
+                    fieldset.textbox
+                        h2
+                            |   Start Game ?
+                        a.submit.decision(onclick="location.reload();")
+                            |   View Again
+                        a.submit.decision(onclick="location.reload();")
+                            |   Start
             .push
         footer
             .copyright
