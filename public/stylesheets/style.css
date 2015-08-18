@@ -79,8 +79,8 @@ body {
 }
 /* line 122, ../sass/screen.scss */
 .wrapper .content .options .hint #play-music {
-    background: url("../images/gclef-off.png") center no-repeat #ffffff;
-    background-size: contain;
+    background: url("../images/pause.png") center no-repeat #ffffff;
+    background-size: 65%;
 }
 .wrapper .content .options .hint .down#music #play-music {
     background: url("../images/gclef.png") center no-repeat #ffffff;
