@@ -66,12 +66,16 @@ router.get('/play', function(req, res, next) {
         } else {
             var level = req.query.level ? req.query.level : game[0].curLevel;
             var difficulty = level <= 4 ? 1 : (level <= 8) ? 2 : 3;
-            questionModel.find({"category": game[0].category, "difficulty":  difficulty}, function(err, questions){
-                if (err) {
-                    return next(err);
-                } else {
-                    res.render('play', {"questions": questions, "game": game[0], "level" : level});
-                }
+
+            questionModel.find({"category": game[0].category, "difficulty":  difficulty}, function(err, count) {
+                var randNum = Math.random() * (count - 0 )+ 0;
+                questionModel.find({"category": game[0].category, "difficulty":  difficulty}).skip(randNum).limit(10).exec(function(err, questions){
+                    if (err) {
+                        return next(err);
+                    } else {
+                        res.render('play', {"questions": questions, "game": game[0], "level" : level});
+                    }
+                });
             });
         }
     });
