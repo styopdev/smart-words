@@ -45,5 +45,5 @@ $(document).ready(function(){
         $('body').append('<div id="mask"></div>');
         $("#timeOver").css("display", "block")
         $('#mask').fadeIn(300);
-    }, timeDifference * 1000); // 18000
+    }, timeDifference * 11000); // 18000
 });// complete click
