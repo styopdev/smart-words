@@ -32,5 +32,18 @@ $(document).ready(function(){
     window.setTimeout(function(){
         $("#completion-level").addClass("tooltip-I");
     }, timeDifference * 9000); // 18000
-
+    window.setTimeout(function(){
+        $("#start-game").fadeIn(300);
+        //Set the center alignment padding + border see css style
+        var popMargTop = ($("#start-game").height() + 24) / 2;
+        var popMargLeft = ($("#start-game").width() + 24) / 2;
+        $("#start-game").css({
+            'margin-top' : -popMargTop,
+            'margin-left' : -popMargLeft
+        });
+        // Add the mask to body
+        $('body').append('<div id="mask"></div>');
+        $("#timeOver").css("display", "block")
+        $('#mask').fadeIn(300);
+    }, timeDifference * 1000); // 18000
 });// complete click
