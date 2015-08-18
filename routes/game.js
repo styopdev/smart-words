@@ -3,6 +3,9 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/category', function(req, res, next) {
+    if (!req.session.user_id) {
+        return res.redirect("/users/login");
+    }
     res.render('category');
 });
 

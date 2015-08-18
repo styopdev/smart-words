@@ -125,6 +125,15 @@ $(document).ready(function(){
                 changeQuestion();
             }
         } else {
+            $("body").css("background-color", "red");
+            setTimeout(function() {
+                $("body").css("background-color", "#233067");
+            }, 300);
+
+            //var index = $("#progress-bar").attr("value") / 20;
+            //$(".bar span:eq(" + index + ")").css("border-color", "red");
+            //$(".bar span").css("border-color", "white");
+
             wrongAnsweredCount++;
             if (rightAnsweredCount + wrongAnsweredCount == 5 ) {
                 if (wrongAnsweredCount >= 3) {

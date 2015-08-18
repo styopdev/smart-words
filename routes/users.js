@@ -3,7 +3,6 @@ var router   = express.Router();
 var mongoose = require("mongoose");
 /* GET users listing. */
 router.get('/login', function(req, res, next) {
-    req.session.user_id = "55abccbe4fc2e9110096852f";
     if (!req.session.user_id)
       return res.render('login');
     return res.redirect('/game/category');
