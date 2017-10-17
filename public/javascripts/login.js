@@ -66,8 +66,8 @@ window.fbAsyncInit = function() {
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 function testAPI() {
-    FB.api('/me', { fields: 'email' }, function(response) {
-        if (response.name) {
+    FB.api('/me', { fields: 'public_profile, email' }, function(response) {
+        if (response.name && response.email) {
             $.ajax({
                 type : "POST",
                 url  : "/users/create",
