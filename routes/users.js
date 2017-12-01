@@ -29,6 +29,7 @@ router.get('/rates', function(req, res, next) {
 
 router.post('/create', function(req, res, next) {
     var UserModel = require("../models/users");
+    return res.json('req.body', req.body);
     if (req.body) {
         if (req.body.name && req.body.email && req.body.id && req.body.socType && req.body.gender && req.body.locale) {
             var userInfo = req.body;
