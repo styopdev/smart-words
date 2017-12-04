@@ -8,9 +8,10 @@ router.get('/userlist', function(req, res, next) {
 });
 
 router.get('/questions', function(req, res, next) {
-    var QuestionModel = require("../models/questions");
     QuestionModel.find({}, function(err, questions) {
-        if (err) return next(err);
+        if (err) {
+            return next(err);
+        }
         res.render("../views/admin/questions", {"questions" : questions});
     });
 });
