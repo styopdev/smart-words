@@ -37,10 +37,20 @@ app.use(session({
     saveUninitialized :false
 }));
 
+app.use('/admin', admin);
+
+app.use('/', function (req, res, next) {  
+  if (req.url === '/' || req.url === '/users/login' ||  ~req.url.indexOf('admin') || ~req.url.indexOf('lang')) {
+    return next();
+  } else if (!req.session.user_id) {
+    return res.redirect('/users/login');
+  }
+  next();
+});
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/game', game);
-app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var QuestionModel = require("../models/questions");
 
 /* GET users listing. */
 router.get('/userlist', function(req, res, next) {
@@ -15,7 +16,6 @@ router.get('/questions', function(req, res, next) {
 });
 
 router.post('/form', function(req, res, next) {
-    var QuestionModel = require("../models/questions");
     var reqQuestion = req.body.text;
     if (reqQuestion) {
         if (!req.body.question_id) {
@@ -33,36 +33,37 @@ router.post('/form', function(req, res, next) {
                 res.redirect("/admin/questions");
             });
         } else {
-            QuestionModel.update({"_id" : req.body.question_id}, {"$set" :
+            QuestionModel.update({ _id : req.body.question_id },
+              { $set :
                 {
-                    "text"         : req.body.text,
-                    "answers"      : [req.body.answers_0, req.body.answers_1, req.body.answers_2, req.body.answers_3],
-                    "rightAnswer"  : req.body.rightAnswer,
-                    "difficulty"   : req.body.difficulty,
-                    "category"     : req.body.category
+                    text: req.body.text,
+                    answers: [req.body.answers_0, req.body.answers_1, req.body.answers_2, req.body.answers_3],
+                    rightAnswer: req.body.rightAnswer,
+                    difficulty: req.body.difficulty,
+                    category: req.body.category
                 }
-            }, function(err, affected) {
-                if (err) return next(err);
-                res.redirect("/admin/questions");
-            });
+              }, function(err, affected) {
+                  if (err) {
+                    return next(err);
+                  }
+                  res.redirect("/admin/questions");
+              });
         }
     }
 });
 
 router.get('/form', function(req, res, next) {
-    var QuestionModel = require("../models/questions");
     if (req.query.id) {
         QuestionModel.findById(req.query.id, function (err, question) {
-            res.render("../views/admin/q-form.jade", {"question" : question});
+            res.render("../views/admin/q-form.jade", { question: question });
         });
     } else {
-        res.render("../views/admin/q-form.jade", {"question" : {}});
+        res.render("../views/admin/q-form.jade", { question : {} });
     }
 });
 
 router.get('/delete', function(req, res, next) {
     if (req.query.id) {
-        var QuestionModel = require("../models/questions");
         QuestionModel.find({"_id" : req.query.id}).remove().exec(function(err){
             if (err) return next(err);
             res.redirect(req.headers["referer"]);

@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var userModel = require("../models/users");
+var gameModel = require("../models/games");
+var questionModel = require("../models/questions");
 
 /* GET users listing. */
 router.get('/category', function(req, res, next) {
-    if (!req.session.user_id) {
-        return res.redirect("/users/login");
-    }
     res.render('category');
 });
 
@@ -13,19 +13,14 @@ router.get('/tutorial', function(req, res, next) {
     res.render('tutorial');
 });
 
-
 router.get('/levels', function(req, res, next) {
-    if (!req.session.user_id) {
-        return res.redirect("/users/login");
-    }
     var category = req.query.category;
     if (category) {
-        var gameModel = require("../models/games");
-        gameModel.findOne({"category" : category, "userId" : req.session.user_id}, function(err, game) {
+        gameModel.findOne({ category: category, userId: req.session.user_id }, function(err, game) {
             if (err) {
                 return next(err);
             } else if (game) {
-                return res.render('levels', {'game' : game});
+                return res.render('levels', { game: game });
             } else {
                 var game = gameModel();
                 game.userId = req.session.user_id;
@@ -47,11 +42,6 @@ router.get('/levels', function(req, res, next) {
 
 
 router.get('/play', function(req, res, next) {
-    if (!req.session.user_id) {
-        return res.redirect("/users/login");
-    }
-    var gameModel = require("../models/games");
-    var questionModel = require("../models/questions");
     var gameID = req.query.game_id;
 
     if (!gameID) {
@@ -82,18 +72,14 @@ router.get('/play', function(req, res, next) {
 });
 
 router.get('/nextLevel', function(req, res, next) {
-    if (!req.session.user_id) {
-        return res.redirect("/users/login");
-    }
-    var userModel = require("../models/users");
-    var gameModel = require("../models/games");
-    var game_id   = req.query.game_id;
-    var level     = parseInt(req.query.level);
-    var score     = req.query.score;
+    var game_id = req.query.game_id;
+    var score = req.query.score;
+    var level = parseInt(req.query.level);
 
     gameModel.findOne({"_id" : game_id}, function(err, game) {
-        if (err) return next(err);
-        else {
+        if (err) {
+          return next(err);
+        } else {
             if (level < game.curLevel) {
                 if (game.levels[level - 1] < score) {
                     game.levels[level - 1] = score;
@@ -106,22 +92,26 @@ router.get('/nextLevel', function(req, res, next) {
                 }
             } else {
                 game.curLevel = level + 1;
-                if (!game.levels)
-                    game.levels = [];
+                if (!game.levels) {
+                  game.levels = [];
+                }
+
                 game.levels.push(parseInt(score));
 
                 game.save(function(err) {
-                    if (err) return next(err);
-                    else {
+                    if (err) {
+                      return next(err);
+                    } else {
                         calculateUserRate(0);
                     }
                 });
             }
         }
         function calculateUserRate(isNewLevel) {
-            gameModel.find({"userId" : req.session.user_id}, function(err, games) {
-                if (err) return next(err);
-                else {
+            gameModel.find({ userId: req.session.user_id }, function(err, games) {
+                if (err) {
+                  return next(err);
+                } else {
                     var rating = 0;
                     var coef  = 0;
 
@@ -137,21 +127,19 @@ router.get('/nextLevel', function(req, res, next) {
                             rating += (coef * parseInt(games[i].levels[j]));
                         }
                     }
-                    userModel.findOne({"_id" : req.session.user_id}, function(err, user) {
-                        if (err) return next(err);
-                        else if (!user) {
+                    userModel.findOne({ _id : req.session.user_id }, function(err, user) {
+                        if (err) {
+                          return next(err);
+                        } else if (!user) {
                             var err = new Error();
                             err.statusCode = 404;
                             return next(err);
                         } else {
                             user.score = rating;
-
-                            console.log("======")
-                            console.log(rating)
-                            console.log("=======")
-                            console.log(user)
                             user.save(function(err) {
-                                if (err) return next(err);
+                                if (err) {
+                                  return next(err);
+                                }
 
                                 if (isNewLevel) {
                                     return res.redirect("/game/play?level=" + game.curLevel + "&game_id=" + game_id);
@@ -168,15 +156,13 @@ router.get('/nextLevel', function(req, res, next) {
 });
 
 router.get('/decrementHint', function(req, res, next) {
-    if (!req.session.user_id) {
-        return res.redirect("/users/login");
-    }
-    var gameModel = require("../models/games");
     var updateObject = req.query.hintType == "hintNum" ? {"$inc" : {"hintNum" : -1}} : {"$inc" : {"skipNum" : -1}};
     var game_id  = req.query.game_id;
 
-    if (!updateObject || !game_id)
-        return;
+    if (!updateObject || !game_id) {
+      return;
+    }
+
     gameModel.update({"_id" : game_id}, updateObject, function(err) {
         if (err) {
             return next(err);

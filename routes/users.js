@@ -9,9 +9,6 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/rates', function(req, res, next) {
-    if (!req.session.user_id) {
-        return res.redirect("/users/login");
-    }
     var UserModel = require("../models/users");
     UserModel.find({}, function(err, result){
         if (err) {
