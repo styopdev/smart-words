@@ -39,8 +39,8 @@ app.use(session({
 
 app.use('/admin', admin);
 
-app.use('/', function (req, res, next) {  
-  if (req.url === '/' || req.url === '/users/login' ||  ~req.url.indexOf('admin') || ~req.url.indexOf('lang')) {
+app.use('/', function (req, res, next) {
+  if (req.url === '/' || req.url === '/users/login' || req.url === '/users/create' ||  ~req.url.indexOf('admin') || ~req.url.indexOf('lang')) {
     return next();
   } else if (!req.session.user_id) {
     return res.redirect('/users/login');
@@ -93,16 +93,6 @@ mongoose.connect('mongodb://webandweb:webandweb@ds045632.mongolab.com:45632/hero
         console.log("Connected!!!");
     }
 });
-
-
-//mongoose.connect('mongodb://localhost/smart-words', function(err) {
-//    if (err) {
-//        throw err;
-//    } else {
-//        console.log("Connected!!!");
-//    }
-//});
-
 
 
 module.exports = app;

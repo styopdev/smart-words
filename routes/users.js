@@ -11,20 +11,11 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/rates', function(req, res, next) {
-    UserModel.find({}, function(err, result){
+    UserModel.find({}).sort({ score: -1 }).exec(function(err, result) {
         if (err) {
             return next(err);
         }
-        result = result.sort(function(a, b) {
-           if (a.score > b.score) {
-             return -1;
-           } else if (a.score < b.score) {
-             return 1;
-           } else {
-             return 0;
-           }
-        });
-        res.render("../views/rates", {users:result, user_id : req.session.user_id});
+        res.render("../views/rates", { users: result, user_id: req.session.user_id});
     });
 });
 
