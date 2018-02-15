@@ -66,14 +66,15 @@ window.fbAsyncInit = function() {
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 function testAPI() {
-    FB.api('/me', { fields: 'name, email, gender, locale' }, function(response) {
+    FB.api('/me', { fields: 'name, email, gender, locale, location' }, function(response) {
         if (response.name && response.email) {
             $.ajax({
                 type : "POST",
                 url  : "/users/create",
                 data : {'name' : response.name, 'email' : response.email, 'id' : response.id, "socType" : "fb", 'gender' : response.gender, 'locale' :response.locale},
                 success : function(data) {
-                    window.location = "/game/category";
+                    console.log(data);
+                    //window.location = "/game/category";
                 }
             });
         }
