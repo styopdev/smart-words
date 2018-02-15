@@ -75,6 +75,9 @@ function testAPI() {
                 success : function(data) {
                     console.log(data);
                     //window.location = "/game/category";
+                },
+                error: function(error) {
+                    console.log('error', error);
                 }
             });
         }
